@@ -1,10 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using LaughGame.Assets.Scripts.Model.Abilities.Stats;
-using LaughGame.Model.Abilities;
 using UnityEngine;
-using Zenject;
 
 namespace LaughGame.Assets.Scripts.Model.Abilities
 {
@@ -13,6 +10,11 @@ namespace LaughGame.Assets.Scripts.Model.Abilities
         private Coroutine _routine;
         private float _coroutineTime;
         private HashSet<IHealth> _touchedEnemies = new();
+
+        public override Sprite GetSprite()
+        {
+            return Resources.Load<Sprite>("Abilities/Line");
+        }
 
         public override void Execute()
         {

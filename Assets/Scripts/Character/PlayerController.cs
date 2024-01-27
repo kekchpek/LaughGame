@@ -1,9 +1,8 @@
 using LaughGame;
 using LaughGame.Assets.Scripts.Model.Abilities;
-using System.Collections;
-using System.Collections.Generic;
+using LaughGame.Model.Abilities;
 using UnityEngine;
-using UnityEngine.EventSystems;
+using Zenject;
 
 public class PlayerController : MonoBehaviour, IMovable
 {
@@ -35,12 +34,20 @@ public class PlayerController : MonoBehaviour, IMovable
 
     private Vector2 _facingDirection;
 
+    private IAbilitiesEntitiesProvider _abilitiesEntitiesProvider;
+    
+    [Inject]
+    public void Consruct(IAbilitiesEntitiesProvider abilitiesEntitiesProvider)
+    {
+        _abilitiesEntitiesProvider = abilitiesEntitiesProvider;
+        _abilitiesEntitiesProvider.SetMovable(this);
+    }
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         states = GetComponent<StateManager>();
         trans = transform;
-
     }
 
     // Update is called once per frame
@@ -76,5 +83,10 @@ public class PlayerController : MonoBehaviour, IMovable
     public void Move(Vector2 movementVelocity)
     {
         rb.velocity = movementVelocity;
+    }
+
+    private void OnDestroy()
+    {
+        _abilitiesEntitiesProvider.SetMovable(null);
     }
 }

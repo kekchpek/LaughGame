@@ -14,6 +14,11 @@ namespace LaughGame.Assets.Scripts.Model.Abilities
         private int _jumpCompleted = 0;
 
         private Vector3 _lastHitPos;
+        public override Sprite GetSprite()
+        {
+            return Resources.Load<Sprite>("Abilities/Lightning");
+        }
+
         public override void Execute()
         {
             if (_routine != null)

@@ -10,7 +10,6 @@ namespace LaughGame.Assets.Scripts.Model.Abilities
     {
 
         void TakeDamage(float amount);
-        void Die();
 
         
 

@@ -1,19 +1,18 @@
 ﻿using LaughGame.Model.Abilities;
-using System.Collections;
-using UnityEngine;
 
 namespace LaughGame.Assets.Scripts.Model.Abilities
 {
-    public class AbilitiesEntitiesProvider : MonoBehaviour, IAbilitiesEntitiesProvider
+    public class AbilitiesEntitiesProvider : IAbilitiesEntitiesProvider
     {
-        [SerializeField] private GameObject _player;
         private IMovable _movablePlayer;
+
+        public void SetMovable(IMovable player)
+        {
+            _movablePlayer = player;
+        }
 
         public IMovable GetMovablePlayer()
         {
-            if(_movablePlayer == null)
-                _movablePlayer = _player.GetComponent<IMovable>();
-
             return _movablePlayer;
         }
 

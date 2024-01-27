@@ -1,11 +1,13 @@
+using LaughGame.Assets.Scripts.Model.Abilities;
 using LaughGame.GameResources;
+using LaughGame.Model.HapinessManager;
 using UnityEngine;
 using Zenject;
 using Random = UnityEngine.Random;
 
 namespace LaughGame.Interaction.Npc
 {
-    public class NpcController : MonoBehaviour
+    public class NpcController : MonoBehaviour, IHealth
     {
 
         [SerializeField]
@@ -22,16 +24,19 @@ namespace LaughGame.Interaction.Npc
 
         private IResourcesService _resourcesService;
         private IPlayerDamageReceiver _playerDamageReceiver;
+        private IHappinessManager _happinessManager;
 
         private Vector3 _velocity;
 
         [Inject]
         public void Construct(
             IResourcesService resourcesService,
-            IPlayerDamageReceiver playerDamageReceiver)
+            IPlayerDamageReceiver playerDamageReceiver,
+            IHappinessManager happinessManager)
         {
             _resourcesService = resourcesService;
             _playerDamageReceiver = playerDamageReceiver;
+            _happinessManager = happinessManager;
         }
 
         private void FixedUpdate()
@@ -83,5 +88,17 @@ namespace LaughGame.Interaction.Npc
         {
             Destroy(gameObject);
         }
+        
+        private void BecomeHappy()
+        {
+            _happinessManager.AddHappiness();
+            Destroy(gameObject);
+        }
+
+        public void TakeDamage(float amount)
+        {
+            BecomeHappy();
+        }
+
     }
 }

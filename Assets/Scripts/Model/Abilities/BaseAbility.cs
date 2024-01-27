@@ -1,11 +1,7 @@
 ﻿using LaughGame.Assets.Scripts.Model.Abilities.Interfaces;
-using LaughGame.GameResources;
 using LaughGame.Model.Abilities;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using LaughGame.Model.Abilities.AbilitiesRegister;
 using UnityEngine;
 using Zenject;
 
@@ -15,19 +11,24 @@ namespace LaughGame.Assets.Scripts.Model.Abilities
     {
 
         [SerializeField] private List<T> _stats;
+        [SerializeField] private IAbilitiesEntitiesProvider _entitiesProvider;
 
         protected T _curStat;
 
 
         private int _statIndex = 0;
 
-        public IMovable AbilityParent { get; protected set; }
+        public IMovable AbilityParent => _entitiesProvider.GetMovablePlayer();
+
         
 
         [Inject]
-        public void Construct(IAbilitiesEntitiesProvider entitiesProvider)
+        public void Construct(
+            IAbilitiesEntitiesProvider entitiesProvider,
+            IAbilitiesRegister abilitiesRegister)
         {
-            AbilityParent = entitiesProvider.GetMovablePlayer();
+            abilitiesRegister.Register(this);
+            _entitiesProvider = entitiesProvider;
         }
 
         private void Start()
@@ -35,6 +36,8 @@ namespace LaughGame.Assets.Scripts.Model.Abilities
             _curStat = _stats[0];
         }
 
+        public abstract Sprite GetSprite();
+        
         public abstract void Execute();
         public void Upgrade()
         {

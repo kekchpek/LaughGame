@@ -4,6 +4,7 @@ namespace LaughGame.Model.Abilities
 {
     public interface IAbilitiesEntitiesProvider
     {
+        void SetMovable(IMovable player);
         IMovable GetMovablePlayer();
     }
 }

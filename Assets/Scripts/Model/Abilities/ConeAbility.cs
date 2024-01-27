@@ -10,7 +10,10 @@ namespace LaughGame.Assets.Scripts.Model.Abilities
 {
     public class ConeAbility : BaseAbility<ConeAbilityStats>
     {
-
+        public override Sprite GetSprite()
+        {
+            return Resources.Load<Sprite>("Abilities/Cone");
+        }
 
         public override void Execute()
         {

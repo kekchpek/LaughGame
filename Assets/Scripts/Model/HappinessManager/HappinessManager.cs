@@ -5,7 +5,7 @@ namespace LaughGame.Model.HapinessManager
     public class HappinessManager : IHappinessManager
     {
         private const float MaxHappinessValue = 100f;
-        private const float HappinessBonus = 1f;
+        private const float HappinessBonus = 2f;
 
         private readonly IMutable<float> _happiness = new Mutable<float>(50f);
 

@@ -10,7 +10,7 @@ namespace LaughGame.GameResources
         public static readonly ResourceId EvilPurple = new(nameof(EvilPurple));
         public static readonly ResourceId SurpriseOrange = new(nameof(SurpriseOrange));
 
-        public static readonly IReadOnlyCollection<ResourceId> All = new[]
+        public static readonly IReadOnlyList<ResourceId> All = new[]
         {
             LovePink, CoolGreen, EvilPurple, SurpriseOrange
         };

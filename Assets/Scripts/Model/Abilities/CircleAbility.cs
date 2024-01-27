@@ -13,6 +13,12 @@ namespace LaughGame.Assets.Scripts.Model.Abilities
     class CircleAbility : BaseAbility<CircleAbilityStats>
     {
         [SerializeField] private LayerMask _enemyMask;
+        
+        public override Sprite GetSprite()
+        {
+            return Resources.Load<Sprite>("Abilities/Circle");
+        }
+
         public override void Execute()
         {
 
