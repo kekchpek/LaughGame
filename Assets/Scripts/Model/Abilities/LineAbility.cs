@@ -7,7 +7,7 @@ using Zenject;
 
 namespace LaughGame.Assets.Scripts.Model.Abilities
 {
-    public class LineAbility : BaseAbility
+    public class LineAbility : BaseAbility<LineAbilityStats>
     {
 
         private Coroutine _routine;

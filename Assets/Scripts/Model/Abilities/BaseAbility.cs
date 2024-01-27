@@ -7,12 +7,12 @@ using UnityEngine;
 
 namespace LaughGame.Assets.Scripts.Model.Abilities
 {
-    public abstract class BaseAbility : MonoBehaviour
+    public abstract class BaseAbility<T> : MonoBehaviour
     {
 
-        [SerializeField] protected List<AbilityStats> _stats;
+        [SerializeField] protected List<T> _stats;
 
-        protected AbilityStats _curStat;
+        protected T _curStat;
         protected int _statIndex = 0;
 
         public  IMovable AbilityParent { get; protected set; }

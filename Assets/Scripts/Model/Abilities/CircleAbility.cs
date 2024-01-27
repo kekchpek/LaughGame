@@ -9,7 +9,7 @@ using Zenject;
 
 namespace LaughGame.Assets.Scripts.Model.Abilities
 {
-    class CircleAbility : BaseAbility
+    class CircleAbility : BaseAbility<CircleAbilityStats>
     {
     
 
