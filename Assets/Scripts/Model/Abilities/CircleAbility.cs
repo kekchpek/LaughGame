@@ -43,7 +43,7 @@ namespace LaughGame.Assets.Scripts.Model.Abilities
         {
             if (Application.isPlaying == false)
                 return;
-            UnityEditor.Handles.DrawWireDisc(transform.position, Vector3.up, _curStat.Radius);
+            UnityEditor.Handles.DrawWireDisc(transform.position, Vector3.forward, _curStat.Radius);
         }
 
     }

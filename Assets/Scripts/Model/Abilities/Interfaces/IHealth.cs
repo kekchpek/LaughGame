@@ -10,9 +10,9 @@ namespace LaughGame.Assets.Scripts.Model.Abilities
     {
 
         void TakeDamage(float amount);
-        void Die(float amount);
+        void Die();
 
-        void Heal(float amount);
+        
 
     }
 }

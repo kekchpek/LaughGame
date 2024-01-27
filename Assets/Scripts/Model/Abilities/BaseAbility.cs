@@ -1,4 +1,5 @@
-﻿using LaughGame.GameResources;
+﻿using LaughGame.Assets.Scripts.Model.Abilities.Interfaces;
+using LaughGame.GameResources;
 using LaughGame.Model.Abilities;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,7 @@ using Zenject;
 
 namespace LaughGame.Assets.Scripts.Model.Abilities
 {
-    public abstract class BaseAbility<T> : MonoBehaviour
+    public abstract class BaseAbility<T> : MonoBehaviour, IAbility
     {
 
         [SerializeField] private List<T> _stats;

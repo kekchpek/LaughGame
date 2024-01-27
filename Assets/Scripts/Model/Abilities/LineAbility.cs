@@ -27,6 +27,7 @@ namespace LaughGame.Assets.Scripts.Model.Abilities
 
         public IEnumerator StartSequence()
         {
+
             while (_coroutineTime < _curStat.Duration)
             {
                 _coroutineTime += Time.fixedDeltaTime;

@@ -1,10 +1,11 @@
 using LaughGame;
+using LaughGame.Assets.Scripts.Model.Abilities;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour, IMovable
 {
     public float horizontal;
     public float vertical;
@@ -14,11 +15,19 @@ public class PlayerController : MonoBehaviour
     
     Rigidbody2D rb;
     StateManager states;
+    Transform trans;
+
+    public Transform MovableTransform => trans;
+
+    public bool SelfMovementEnabled { get => states.canMove; set => states.canMove = value; }
+
+    public Vector2 Direction => moveDirection;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         states = GetComponent<StateManager>();
+        trans = transform;
 
     }
 
@@ -48,6 +57,11 @@ public class PlayerController : MonoBehaviour
 
     private void Move()
     {
-        rb.velocity = new Vector2(moveDirection.x * speed, moveDirection.y * speed);
+        Move(new Vector2(moveDirection.x * speed, moveDirection.y * speed));
+    }
+
+    public void Move(Vector2 movementVelocity)
+    {
+        rb.velocity = movementVelocity;
     }
 }
