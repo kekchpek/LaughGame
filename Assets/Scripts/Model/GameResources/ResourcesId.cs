@@ -5,13 +5,14 @@ namespace LaughGame.GameResources
     public readonly struct ResourceId
     {
 
-        public static readonly ResourceId Love;
-        public static readonly ResourceId Smile;
-        public static readonly ResourceId Evil;
+        public static readonly ResourceId LovePink;
+        public static readonly ResourceId CoolOrange;
+        public static readonly ResourceId EvilPurple;
+        public static readonly ResourceId SurpriseCyan;
 
         public static readonly IReadOnlyCollection<ResourceId> All = new[]
         {
-            Love, Smile, Evil
+            LovePink, CoolOrange, EvilPurple, SurpriseCyan
         };
 
         private readonly string _id;
