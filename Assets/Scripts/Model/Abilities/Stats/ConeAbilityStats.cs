@@ -7,13 +7,10 @@ using System.Threading.Tasks;
 namespace LaughGame.Assets.Scripts.Model.Abilities.Stats
 {
     [System.Serializable]
-    public class LineAbilityStats
+    public class ConeAbilityStats
     {
         public float Damage;
-        public float Speed;
-        public float Distance;
-        public float HitBoxRadius;
-        public float Duration => Distance / Speed;
-
+        public float Length;
+        public float ConeAngle;
     }
 }

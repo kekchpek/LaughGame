@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using LaughGame.Assets.Scripts.Model.Abilities.Stats;
 using LaughGame.Model.Abilities;
 using UnityEngine;
 using Zenject;
@@ -14,12 +15,7 @@ namespace LaughGame.Assets.Scripts.Model.Abilities
         private float _coroutineTime;
         private HashSet<IHealth> _touchedEnemies = new();
 
-        [Inject]
-        public void Construct(IAbilitiesEntitiesProvider entitiesProvider)
-        {
-            AbilityParent = entitiesProvider.GetMovablePlayer();
-            _curStat = _stats[0];
-        }
+
 
         public override void Execute()
         {
@@ -35,7 +31,7 @@ namespace LaughGame.Assets.Scripts.Model.Abilities
             {
                 _coroutineTime += Time.fixedDeltaTime;
 
-                Vector2 velocity = AbilityParent.MovableTransform.forward * _curStat.Speed;
+                Vector2 velocity = AbilityParent.Direction * _curStat.Speed;
                 AbilityParent.Move(velocity);
 
                 var colliders = Physics2D.OverlapCircleAll(
@@ -59,6 +55,6 @@ namespace LaughGame.Assets.Scripts.Model.Abilities
             _routine = null;
         }
 
- 
+
     }
 }

@@ -12,6 +12,7 @@ namespace LaughGame.Assets.Scripts.Model.Abilities
         Transform MovableTransform { get; }
         bool SelfMovementEnabled { get; }
 
+        Vector2 Direction { get; }
         Rigidbody2D MovableRigidBody { get; }
 
         void Move(Vector2 movementVelocity);

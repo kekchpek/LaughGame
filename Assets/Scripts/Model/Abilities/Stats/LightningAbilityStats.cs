@@ -7,13 +7,16 @@ using System.Threading.Tasks;
 namespace LaughGame.Assets.Scripts.Model.Abilities.Stats
 {
     [System.Serializable]
-    public class LineAbilityStats
+    public class LightningAbilityStats
     {
         public float Damage;
-        public float Speed;
-        public float Distance;
-        public float HitBoxRadius;
-        public float Duration => Distance / Speed;
-
+        public float FirstJumpRadius;
+        public float JumpRadius;
+        public float NumberOfJumps;
+        public float DelayBetweenJumps;
     }
+
+
 }
+
+

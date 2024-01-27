@@ -1,4 +1,5 @@
-﻿using LaughGame.Model.Abilities;
+﻿using LaughGame.Assets.Scripts.Model.Abilities.Stats;
+using LaughGame.Model.Abilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
