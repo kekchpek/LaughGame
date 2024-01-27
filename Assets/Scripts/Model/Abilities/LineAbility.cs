@@ -10,12 +10,9 @@ namespace LaughGame.Assets.Scripts.Model.Abilities
 {
     public class LineAbility : BaseAbility<LineAbilityStats>
     {
-
         private Coroutine _routine;
         private float _coroutineTime;
         private HashSet<IHealth> _touchedEnemies = new();
-
-
 
         public override void Execute()
         {
@@ -27,18 +24,23 @@ namespace LaughGame.Assets.Scripts.Model.Abilities
 
         public IEnumerator StartSequence()
         {
-
+            print($"start coro");
+            _coroutineTime = 0;
+            _touchedEnemies.Clear();
+            AbilityParent.SelfMovementEnabled = false;
             while (_coroutineTime < _curStat.Duration)
             {
+                print($"coro move");
                 _coroutineTime += Time.fixedDeltaTime;
 
-                Vector2 velocity = AbilityParent.Direction * _curStat.Speed;
+                Vector2 velocity = AbilityParent.FacingDirection * _curStat.Speed;
                 AbilityParent.Move(velocity);
 
                 var colliders = Physics2D.OverlapCircleAll(
                 AbilityParent.MovableTransform.position,
                 _curStat.HitBoxRadius,
                 AbilitiesConfig.EnemiesLayerMask);
+                Debug.Log($"colliders: {colliders.Length}");
 
                 foreach (var collider in colliders)
                 {
@@ -52,8 +54,15 @@ namespace LaughGame.Assets.Scripts.Model.Abilities
 
                 yield return new WaitForFixedUpdate();
             }
-            _touchedEnemies.Clear();
+            AbilityParent.SelfMovementEnabled = true;
             _routine = null;
+        }
+
+        private void OnDrawGizmos()
+        {
+            if (Application.isPlaying == false)
+                return;
+            UnityEditor.Handles.DrawWireDisc(AbilityParent.MovableTransform.position, Vector3.forward, _curStat.HitBoxRadius);
         }
 
 

@@ -12,14 +12,7 @@ namespace LaughGame.Assets.Scripts.Model.Abilities
 {
     class CircleAbility : BaseAbility<CircleAbilityStats>
     {
-    
-
-        [Inject]
-        public void Construct(IAbilitiesEntitiesProvider entitiesProvider)
-        {
-            AbilityParent = entitiesProvider.GetMovablePlayer();
-        }
-
+        [SerializeField] private LayerMask _enemyMask;
         public override void Execute()
         {
 
@@ -28,7 +21,7 @@ namespace LaughGame.Assets.Scripts.Model.Abilities
                 _curStat.Radius,
                 AbilitiesConfig.EnemiesLayerMask);
 
-          
+            Debug.Log($"colliders: {colliders.Length}");
 
             foreach (var collider in colliders)
             {
@@ -43,7 +36,7 @@ namespace LaughGame.Assets.Scripts.Model.Abilities
         {
             if (Application.isPlaying == false)
                 return;
-            UnityEditor.Handles.DrawWireDisc(transform.position, Vector3.forward, _curStat.Radius);
+            UnityEditor.Handles.DrawWireDisc(AbilityParent.MovableTransform.position, Vector3.forward, _curStat.Radius);
         }
 
     }
