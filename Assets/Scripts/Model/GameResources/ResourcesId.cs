@@ -5,10 +5,10 @@ namespace LaughGame.GameResources
     public readonly struct ResourceId
     {
 
-        public static readonly ResourceId LovePink;
-        public static readonly ResourceId CoolOrange;
-        public static readonly ResourceId EvilPurple;
-        public static readonly ResourceId SurpriseCyan;
+        public static readonly ResourceId LovePink = new(nameof(LovePink));
+        public static readonly ResourceId CoolOrange = new(nameof(CoolOrange));
+        public static readonly ResourceId EvilPurple = new(nameof(EvilPurple));
+        public static readonly ResourceId SurpriseCyan = new(nameof(SurpriseCyan));
 
         public static readonly IReadOnlyCollection<ResourceId> All = new[]
         {

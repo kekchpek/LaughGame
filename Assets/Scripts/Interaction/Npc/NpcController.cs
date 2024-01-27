@@ -17,6 +17,7 @@ namespace LaughGame.Interaction.Npc
         [SerializeField]
         private float _damage;
 
+        [SerializeField]
         private string _resId;
 
         private IResourcesService _resourcesService;
