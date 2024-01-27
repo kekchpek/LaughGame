@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace LaughGame.Interaction.Npc
 {
-    public interface INpcPositionSource
+    public interface IPlayerPositionSource
     {
         Vector3 Position { get; }
     }

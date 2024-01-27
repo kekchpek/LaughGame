@@ -1,5 +1,5 @@
-using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Zenject;
 using Random = UnityEngine.Random;
@@ -28,11 +28,14 @@ namespace LaughGame.Interaction.Npc
         private float _time;
 
         private IInstantiator _instantiator;
+        private IPlayerPositionProvider _playerPositionProvider;
 
         [Inject]
-        public void Construct(IInstantiator instantiator)
+        public void Construct(IInstantiator instantiator,
+            IPlayerPositionProvider playerPositionProvider)
         {
             _instantiator = instantiator;
+            _playerPositionProvider = playerPositionProvider;
         }
 
         private void Update()
@@ -61,8 +64,14 @@ namespace LaughGame.Interaction.Npc
                 npcToSpawn = _enemyPrefabs[randIndex];
             }
             var npc = _instantiator.InstantiatePrefab(npcToSpawn);
-            var spawnIndex = Random.Range(0, _spawnPoints.Count - 1);
-            var position = _spawnPoints[spawnIndex].position;
+            var playerPos = _playerPositionProvider.GetPosition();
+            if (!playerPos.HasValue)
+                return;
+            var availableSpawns = _spawnPoints
+                .Where(x => Vector3.Distance(x.position, playerPos.Value) > 10f)
+                .ToArray();
+            var spawnIndex = Random.Range(0, availableSpawns.Length - 1);
+            var position = availableSpawns[spawnIndex].position;
             npc.transform.position = position;
         }
     }
