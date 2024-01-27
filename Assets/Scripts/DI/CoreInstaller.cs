@@ -19,7 +19,7 @@ namespace LaughGame.DI
             Container.Bind<IPlayerDamageReceiver>().To<PlayerDamageReceiver>().AsSingle();
             Container.Bind<IHappinessManager>().To<HappinessManager>().AsSingle();
             Container.Bind<IAbilitiesEntitiesProvider>().To<AbilitiesEntitiesProvider>().FromInstance(_abilitiesEntitiesProvider);
-
+            Container.Bind<IPlayerPositionProvider>().To<PlayerPositionProvider>().AsSingle();
         }
     }
 }
