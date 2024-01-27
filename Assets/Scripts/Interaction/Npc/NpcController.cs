@@ -50,7 +50,7 @@ namespace LaughGame.Interaction.Npc
                 }
                 if (_damage > 0f)
                 {
-                    // do damage?
+                    
                 }
                 Disappear();
             }

@@ -1,8 +1,7 @@
-using System;
 using AsyncReactAwait.Bindable;
 using LaughGame.GameResources;
+using TMPro;
 using UnityEngine;
-using UnityEngine.UIElements;
 using Zenject;
 
 namespace LaughGame.Model.GameResources.Component
@@ -13,6 +12,9 @@ namespace LaughGame.Model.GameResources.Component
         [SerializeField]
         private string _resourceId;
 
+        [SerializeField]
+        private TMP_Text _text;
+
         private IBindable<float> _resource;
 
         [Inject]
@@ -22,9 +24,9 @@ namespace LaughGame.Model.GameResources.Component
             _resource.Bind(OnResChanged);
         }
 
-        private void OnResChanged(float obj)
+        private void OnResChanged(float val)
         {
-            
+            _text.text = ((int)val).ToString();
         }
 
         private void OnDestroy()
