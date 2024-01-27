@@ -9,11 +9,9 @@ using Zenject;
 
 namespace LaughGame.Assets.Scripts.Model.Abilities
 {
-    class CircleAbility : MonoBehaviour, IAbility
+    class CircleAbility : BaseAbility
     {
-        [field: SerializeField] public IMovable AbilityParent { get; private set; }
-        [SerializeField] float _damage;
-        [SerializeField] float _radius;
+    
 
         [Inject]
         public void Construct(IAbilitiesEntitiesProvider entitiesProvider)
@@ -21,19 +19,19 @@ namespace LaughGame.Assets.Scripts.Model.Abilities
             AbilityParent = entitiesProvider.GetMovablePlayer();
         }
 
-        public void Execute()
+        public override void Execute()
         {
 
-            var colliders = Physics.OverlapSphere(
+            var colliders = Physics2D.OverlapCircleAll(
                 AbilityParent.MovableTransform.position,
-                _radius,
+                _curStat.Radius,
                 AbilitiesConfig.EnemiesLayerMask);
 
             foreach (var collider in colliders)
             {
                 var health = collider.GetComponent<IHealth>();
                 if (health != null)
-                    health.TakeDamage(_damage);
+                    health.TakeDamage(_curStat.Damage);
             }
         }
 

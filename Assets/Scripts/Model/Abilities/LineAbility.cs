@@ -7,13 +7,10 @@ using Zenject;
 
 namespace LaughGame.Assets.Scripts.Model.Abilities
 {
-    public class LineAbility : MonoBehaviour, IAbility
+    public class LineAbility : BaseAbility
     {
-        public IMovable AbilityParent { get; private set; }
 
-        private LineAbilityStats _stats;
         private Coroutine _routine;
-        private float _duration;
         private float _coroutineTime;
         private HashSet<IHealth> _touchedEnemies = new();
 
@@ -21,9 +18,10 @@ namespace LaughGame.Assets.Scripts.Model.Abilities
         public void Construct(IAbilitiesEntitiesProvider entitiesProvider)
         {
             AbilityParent = entitiesProvider.GetMovablePlayer();
+            _curStat = _stats[0];
         }
 
-        public void Execute()
+        public override void Execute()
         {
             if (_routine != null)
                 StopCoroutine(_routine);
@@ -33,16 +31,16 @@ namespace LaughGame.Assets.Scripts.Model.Abilities
 
         public IEnumerator StartSequence()
         {
-            while (_coroutineTime < _duration)
+            while (_coroutineTime < _curStat.Duration)
             {
-                _duration += Time.fixedDeltaTime;
+                _coroutineTime += Time.fixedDeltaTime;
 
-                Vector2 velocity = AbilityParent.MovableTransform.forward * _stats.Speed;
+                Vector2 velocity = AbilityParent.MovableTransform.forward * _curStat.Speed;
                 AbilityParent.Move(velocity);
 
-                var colliders = Physics.OverlapSphere(
+                var colliders = Physics2D.OverlapCircleAll(
                 AbilityParent.MovableTransform.position,
-                _stats.HitBoxRadius,
+                _curStat.HitBoxRadius,
                 AbilitiesConfig.EnemiesLayerMask);
 
                 foreach (var collider in colliders)
@@ -50,19 +48,17 @@ namespace LaughGame.Assets.Scripts.Model.Abilities
                     var health = collider.GetComponent<IHealth>();
                     if (health != null && _touchedEnemies.Contains(health) == false)
                     {
-                        health.TakeDamage(_stats.Damage);
+                        health.TakeDamage(_curStat.Damage);
                         _touchedEnemies.Add(health);
                     }
                 }
 
                 yield return new WaitForFixedUpdate();
             }
+            _touchedEnemies.Clear();
             _routine = null;
         }
 
-        public void ReceiveUpgrade()
-        {
-            _duration = _stats.Distance / _stats.Speed;
-        }
+ 
     }
 }
