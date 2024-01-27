@@ -21,17 +21,17 @@ namespace LaughGame.Interaction.Npc
         private string _resId;
 
         private IResourcesService _resourcesService;
-        private IDamageReceiver _damageReceiver;
+        private IPlayerDamageReceiver _playerDamageReceiver;
 
         private Vector3 _velocity;
 
         [Inject]
         public void Construct(
             IResourcesService resourcesService,
-            IDamageReceiver damageReceiver)
+            IPlayerDamageReceiver playerDamageReceiver)
         {
             _resourcesService = resourcesService;
-            _damageReceiver = damageReceiver;
+            _playerDamageReceiver = playerDamageReceiver;
         }
 
         private void FixedUpdate()
@@ -56,7 +56,7 @@ namespace LaughGame.Interaction.Npc
                 }
                 if (_damage > 0f)
                 {
-                    _damageReceiver.DoDamage(_damage);
+                    _playerDamageReceiver.DoDamage(_damage);
                     Disappear(false);
                 }
             }

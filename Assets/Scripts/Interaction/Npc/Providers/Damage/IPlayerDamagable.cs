@@ -1,6 +1,6 @@
 namespace LaughGame.Interaction.Npc
 {
-    public interface IDamagable
+    public interface IPlayerDamagable
     {
         void TakeDamage(float damage);
     }
