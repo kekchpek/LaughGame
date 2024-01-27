@@ -58,12 +58,14 @@ namespace LaughGame.Assets.Scripts.Model.Abilities
             _routine = null;
         }
 
+#if UNITY_EDITOR
         private void OnDrawGizmos()
         {
             if (Application.isPlaying == false)
                 return;
             UnityEditor.Handles.DrawWireDisc(AbilityParent.MovableTransform.position, Vector3.forward, _curStat.HitBoxRadius);
         }
+#endif
 
 
     }

@@ -49,7 +49,7 @@ namespace LaughGame.Assets.Scripts.Model.Abilities
             return enemies;
         }
 
-
+#if UNITY_EDITOR
         private void OnDrawGizmos()
         {
             if (Application.isPlaying == false)
@@ -64,5 +64,6 @@ namespace LaughGame.Assets.Scripts.Model.Abilities
                 _curStat.ConeAngle*2,
                 _curStat.Length);
         }
+#endif
     }
 }
