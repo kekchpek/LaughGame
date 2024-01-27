@@ -1,7 +1,18 @@
+using System.Collections.Generic;
+
 namespace LaughGame.GameResources
 {
     public readonly struct ResourceId
     {
+
+        public static readonly ResourceId Love;
+        public static readonly ResourceId Smile;
+        public static readonly ResourceId Evil;
+
+        public static readonly IReadOnlyCollection<ResourceId> All = new[]
+        {
+            Love, Smile, Evil
+        };
 
         private readonly string _id;
 
