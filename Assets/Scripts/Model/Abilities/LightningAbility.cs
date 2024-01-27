@@ -8,12 +8,12 @@ namespace LaughGame.Assets.Scripts.Model.Abilities
 {
     public class LightningAbility : BaseAbility<LightningAbilityStats>
     {
-
+        [SerializeField] private LineRenderer _lineRenderer;
         private Coroutine _routine;
         private HashSet<Collider2D> _touchedColliders = new();
         private int _jumpCompleted = 0;
 
-
+        private Vector3 _lastHitPos;
         public override void Execute()
         {
             if (_routine != null)
@@ -26,6 +26,8 @@ namespace LaughGame.Assets.Scripts.Model.Abilities
         {
             _jumpCompleted = 0;
             _touchedColliders.Clear();
+            _lineRenderer.positionCount = 1;
+            _lineRenderer.SetPosition(0, AbilityParent.MovableTransform.position);
 
             while (_jumpCompleted < _curStat.NumberOfJumps)
             {
@@ -38,9 +40,15 @@ namespace LaughGame.Assets.Scripts.Model.Abilities
                 AbilitiesConfig.EnemiesLayerMask)
                     .Where(x => _touchedColliders.Contains(x) == false);
 
+
+                print($"Jump {_jumpCompleted+1}, col count: {colliders.Count()}");
+                if (colliders.Count() == 0)
+                    break;
+
                 var randomIndex = Random.Range(0, colliders.Count());
 
                 var randomEnemyCollider = colliders.ElementAt(randomIndex);
+                _lastHitPos = randomEnemyCollider.transform.position;
 
                 var health = randomEnemyCollider.GetComponent<IHealth>();
                 if (health != null)
@@ -50,11 +58,20 @@ namespace LaughGame.Assets.Scripts.Model.Abilities
                 }
 
                 _jumpCompleted++;
+                _lineRenderer.positionCount++;
+                _lineRenderer.SetPosition(_jumpCompleted, randomEnemyCollider.transform.position);
+
                 yield return new WaitForSeconds(_curStat.DelayBetweenJumps);
             }
+            _lineRenderer.positionCount = 0;
             _routine = null;
         }
 
-
+        private void OnDrawGizmos()
+        {
+            if (Application.isPlaying == false)
+                return;
+            UnityEditor.Handles.DrawWireDisc(_lastHitPos, Vector3.forward, _curStat.JumpRadius);
+        }
     }
 }

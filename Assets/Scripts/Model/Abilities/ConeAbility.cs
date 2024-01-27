@@ -48,5 +48,21 @@ namespace LaughGame.Assets.Scripts.Model.Abilities
 
             return enemies;
         }
+
+
+        private void OnDrawGizmos()
+        {
+            if (Application.isPlaying == false)
+                return;
+
+
+            //UnityEditor.Handles.DrawWireDisc(AbilityParent.MovableTransform.position, Vector3.forward, _curStat.Length);
+            UnityEditor.Handles.DrawWireArc(
+                AbilityParent.MovableTransform.position,
+                Vector3.forward,
+                AbilityParent.FacingDirection.Rotate(-_curStat.ConeAngle),
+                _curStat.ConeAngle*2,
+                _curStat.Length);
+        }
     }
 }

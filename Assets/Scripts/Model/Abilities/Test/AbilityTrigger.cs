@@ -7,7 +7,7 @@ namespace LaughGame.Assets.Scripts.Model.Abilities.Test
     public class AbilityTrigger : MonoBehaviour
     {
 
-        [SerializeField] private LineAbility _abilityToTrigger;
+        [SerializeField] private LightningAbility _abilityToTrigger;
 
 
 

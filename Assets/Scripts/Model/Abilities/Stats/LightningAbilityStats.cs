@@ -12,7 +12,7 @@ namespace LaughGame.Assets.Scripts.Model.Abilities.Stats
         public float Damage;
         public float FirstJumpRadius;
         public float JumpRadius;
-        public float NumberOfJumps;
+        public int NumberOfJumps;
         public float DelayBetweenJumps;
     }
 
