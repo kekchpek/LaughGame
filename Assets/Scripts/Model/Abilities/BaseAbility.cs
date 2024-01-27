@@ -17,6 +17,7 @@ namespace LaughGame.Assets.Scripts.Model.Abilities
 
 
         private int _statIndex = 0;
+        private bool _canUpgrade;
 
         public IMovable AbilityParent => _entitiesProvider?.GetMovablePlayer();
 
@@ -41,16 +42,15 @@ namespace LaughGame.Assets.Scripts.Model.Abilities
         public abstract void Execute();
         public void Upgrade()
         {
-            if (CanUpgrade() == false)
+            if (CanUpgrade == false)
                 return;
             _statIndex++;
 
             _curStat = _stats[_statIndex];
         }
 
-        public bool CanUpgrade()
-        {
-            return _statIndex < _stats.Count;
-        }
+        public abstract string UpgradeDescription { get; }
+        public int CurrentLevel => _statIndex;
+        public bool CanUpgrade => _statIndex < _stats.Count;
     }
 }

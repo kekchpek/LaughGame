@@ -7,6 +7,9 @@ namespace LaughGame.Assets.Scripts.Model.Abilities
 {
     public class LineAbility : BaseAbility<LineAbilityStats>
     {
+
+        public override string UpgradeDescription => "+distance";
+        
         private Coroutine _routine;
         private float _coroutineTime;
         private HashSet<IHealth> _touchedEnemies = new();

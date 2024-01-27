@@ -9,7 +9,11 @@ namespace LaughGame.Assets.Scripts.Model.Abilities.Interfaces
 {
     public interface IAbility
     {
+        string UpgradeDescription { get; }
+        int CurrentLevel { get; }
+        bool CanUpgrade { get; }
         Sprite GetSprite();
         void Execute();
+        void Upgrade();
     }
 }

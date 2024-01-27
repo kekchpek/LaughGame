@@ -1,9 +1,11 @@
 using AsyncReactAwait.Bindable;
+using LaughGame.Model.AbilitiesUpgrade;
 
 namespace LaughGame.Model.HapinessManager
 {
     public class HappinessManager : IHappinessManager
     {
+        private readonly IAbilitiesUpgradeManager _upgradeManager;
         private const float MaxHappinessValue = 100f;
         private const float HappinessBonus = 2f;
 
@@ -12,17 +14,23 @@ namespace LaughGame.Model.HapinessManager
         public float MaxHappiness => MaxHappinessValue;
         public IBindable<float> Happiness => _happiness;
 
+        public HappinessManager(IAbilitiesUpgradeManager upgradeManager)
+        {
+            _upgradeManager = upgradeManager;
+        }
+
         public void SetHappinessPercent(float happinessPercent)
         {
             _happiness.Value = MaxHappiness * happinessPercent;
         }
 
-        public void AddHappiness()
+        public async void AddHappiness()
         {
             _happiness.Value += HappinessBonus;
-            if (_happiness.Value > MaxHappinessValue)
+            while (_happiness.Value > MaxHappinessValue)
             {
-                // add level
+                await _upgradeManager.StartUpgrade();
+                _happiness.Value -= MaxHappinessValue;
             }
         }
 

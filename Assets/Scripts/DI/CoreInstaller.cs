@@ -4,6 +4,7 @@ using LaughGame.Interaction.Npc;
 using LaughGame.Model.Abilities;
 using LaughGame.Model.Abilities.AbilitiesRegister;
 using LaughGame.Model.AbilitiesManagement;
+using LaughGame.Model.AbilitiesUpgrade;
 using LaughGame.Model.HapinessManager;
 using Zenject;
 using UnityEngine;
@@ -21,6 +22,7 @@ namespace LaughGame.DI
             Container.Bind<IPlayerPositionProvider>().To<PlayerPositionProvider>().AsSingle();
             Container.Bind<IAbilitiesRegister>().To<AbilitiesRegister>().AsSingle();
             Container.Bind<IAbilitiesManager>().To<AbilityManager>().AsSingle();
+            Container.Bind<IAbilitiesUpgradeManager>().To<AbilitiesUpgradeManager>().AsSingle();
         }
     }
 }

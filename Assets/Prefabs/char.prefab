@@ -182,13 +182,13 @@ MonoBehaviour:
   - Damage: 1
     Radius: 10
   - Damage: 1
+    Radius: 12
+  - Damage: 1
     Radius: 15
   - Damage: 1
     Radius: 17
   - Damage: 1
     Radius: 20
-  - Damage: 1
-    Radius: 25
   _enemyMask:
     serializedVersion: 2
     m_Bits: 128
@@ -526,23 +526,23 @@ MonoBehaviour:
   - Damage: 1
     Speed: 20
     Distance: 30
-    HitBoxRadius: 1
+    HitBoxRadius: 2
   - Damage: 1
-    Speed: 30
+    Speed: 20
     Distance: 40
-    HitBoxRadius: 1
+    HitBoxRadius: 2
   - Damage: 1
-    Speed: 40
+    Speed: 20
     Distance: 50
-    HitBoxRadius: 1
+    HitBoxRadius: 2
   - Damage: 1
-    Speed: 50
+    Speed: 20
     Distance: 60
-    HitBoxRadius: 1
+    HitBoxRadius: 2
   - Damage: 1
-    Speed: 60
+    Speed: 20
     Distance: 70
-    HitBoxRadius: 1
+    HitBoxRadius: 2
 --- !u!1 &4212665291131339684
 GameObject:
   m_ObjectHideFlags: 0
@@ -590,27 +590,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _stats:
   - Damage: 1
-    FirstJumpRadius: 10
+    FirstJumpRadius: 1000
     JumpRadius: 1000
     NumberOfJumps: 4
     DelayBetweenJumps: 0.3
   - Damage: 1
-    FirstJumpRadius: 10
+    FirstJumpRadius: 1000
     JumpRadius: 1000
     NumberOfJumps: 8
     DelayBetweenJumps: 0.3
   - Damage: 1
-    FirstJumpRadius: 10
+    FirstJumpRadius: 1000
     JumpRadius: 1000
     NumberOfJumps: 16
     DelayBetweenJumps: 0.2
   - Damage: 1
-    FirstJumpRadius: 10
+    FirstJumpRadius: 1000
     JumpRadius: 1000
     NumberOfJumps: 32
     DelayBetweenJumps: 0.1
   - Damage: 1
-    FirstJumpRadius: 10
+    FirstJumpRadius: 1000
     JumpRadius: 1000
     NumberOfJumps: 64
     DelayBetweenJumps: 0.05
@@ -781,16 +781,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _stats:
   - Damage: 1
-    Length: 25
+    Length: 35
     ConeAngle: 30
   - Damage: 1
-    Length: 20
+    Length: 35
     ConeAngle: 50
   - Damage: 1
-    Length: 25
+    Length: 35
     ConeAngle: 80
   - Damage: 1
-    Length: 30
+    Length: 35
     ConeAngle: 100
   - Damage: 1
     Length: 35

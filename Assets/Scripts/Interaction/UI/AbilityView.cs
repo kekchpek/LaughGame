@@ -1,4 +1,5 @@
 using LaughGame.Model.AbilitiesManagement;
+using LaughGame.Model.AbilitiesUpgrade;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
@@ -16,6 +17,9 @@ namespace LaughGame.Interaction.UI
 
         [SerializeField]
         private PriceView _priceView;
+
+        [SerializeField]
+        private StarsView _stars;
 
         private IAbilitiesManager _abilitiesManager;
 
@@ -39,6 +43,7 @@ namespace LaughGame.Interaction.UI
             var data = _abilitiesManager.Get(_index);
             _image.sprite = data.Ability.GetSprite();
             _priceView.SetPrice(data.Price);
+            _stars.SetStars(data.Ability.CurrentLevel);
         }
 
         public void Update()

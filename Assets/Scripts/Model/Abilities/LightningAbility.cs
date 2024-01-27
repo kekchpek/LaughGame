@@ -8,6 +8,9 @@ namespace LaughGame.Assets.Scripts.Model.Abilities
 {
     public class LightningAbility : BaseAbility<LightningAbilityStats>
     {
+
+        public override string UpgradeDescription => "+targets count";
+        
         [SerializeField] private LineRenderer _lineRenderer;
         private Coroutine _routine;
         private HashSet<Collider2D> _touchedColliders = new();

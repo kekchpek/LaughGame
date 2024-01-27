@@ -13,6 +13,9 @@ namespace LaughGame.Assets.Scripts.Model.Abilities
     class CircleAbility : BaseAbility<CircleAbilityStats>
     {
         [SerializeField] private LayerMask _enemyMask;
+
+
+        public override string UpgradeDescription => "+radius";
         
         public override Sprite GetSprite()
         {

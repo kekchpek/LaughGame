@@ -11,6 +11,8 @@ namespace LaughGame.Assets.Scripts.Model.Abilities
     public class ConeAbility : BaseAbility<ConeAbilityStats>
     {
 
+        public override string UpgradeDescription => "+angle";
+
         [SerializeField]
         private ParticleSystem _particleSystem;
         

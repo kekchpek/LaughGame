@@ -100,7 +100,7 @@ namespace LaughGame.Interaction.Npc
         private IEnumerator Disappear(bool isPositiveAnimation)
         {
             _animator.SetTrigger(Die);
-            Destroy(_collider);
+            _collider.enabled = false;
             _walking = false;
             yield return new WaitForSeconds(0.3f);
             Destroy(gameObject);
@@ -111,7 +111,7 @@ namespace LaughGame.Interaction.Npc
             if (!string.IsNullOrEmpty(_resId))
                 yield break;
             _walking = false;
-            Destroy(_collider);
+            _collider.enabled = false;
             _animator.SetTrigger(Like);
             _happinessManager.AddHappiness();
             yield return new WaitForSeconds(1f);
