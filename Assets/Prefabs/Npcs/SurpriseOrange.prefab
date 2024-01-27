@@ -52,7 +52,7 @@ MonoBehaviour:
   _rigidbody: {fileID: 1956268920560207523}
   _damage: 0
   _resId: SurpriseOrange
-  _animator: {fileID: 0}
+  _animator: {fileID: 4720180577138517259}
   _collider: {fileID: 5286924561045921718, guid: 112ec7eccdc814da79e28e2718dd5e0d, type: 3}
 --- !u!58 &5286924561045921718
 CircleCollider2D:
@@ -126,7 +126,7 @@ Animator:
   m_GameObject: {fileID: 4699213554976780669}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 7cf182bad1f91456e914d42fa41ef449, type: 2}
+  m_Controller: {fileID: 9100000, guid: 5e3bcd0f23e406347a27140276714b00, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

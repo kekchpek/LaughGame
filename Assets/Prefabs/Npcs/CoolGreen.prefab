@@ -52,7 +52,7 @@ MonoBehaviour:
   _rigidbody: {fileID: 1956268920560207523}
   _damage: 0
   _resId: CoolGreen
-  _animator: {fileID: 0}
+  _animator: {fileID: 4720180577138517259}
   _collider: {fileID: 5286924561045921718}
 --- !u!58 &5286924561045921718
 CircleCollider2D:
@@ -126,7 +126,7 @@ Animator:
   m_GameObject: {fileID: 4699213554976780669}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 7cf182bad1f91456e914d42fa41ef449, type: 2}
+  m_Controller: {fileID: 9100000, guid: 52d8235361c125647bf2c2f2ce3f8afd, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
