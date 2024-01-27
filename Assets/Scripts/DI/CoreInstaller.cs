@@ -1,4 +1,5 @@
 using LaughGame.GameResources;
+using LaughGame.Interaction.Npc;
 using Zenject;
 
 namespace LaughGame.DI
@@ -8,6 +9,7 @@ namespace LaughGame.DI
         public override void InstallBindings()
         {
             Container.Install<GameResourcesInstaller>();
+            Container.Bind<IDamageReceiver>().To<DamageReceiver>().AsSingle();
         }
     }
 }
