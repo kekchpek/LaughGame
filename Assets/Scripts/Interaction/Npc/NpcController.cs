@@ -10,10 +10,14 @@ namespace LaughGame.Interaction.Npc
         [SerializeField]
         private float _speed;
 
+        [SerializeField]
+        private Rigidbody2D _rigidbody;
+
         private Vector3 _velocity;
 
         private void FixedUpdate()
         {
+            _rigidbody.velocity = default;
             if (_velocity == Vector3.zero)
             {
                 _velocity = Random.insideUnitCircle * _speed;
