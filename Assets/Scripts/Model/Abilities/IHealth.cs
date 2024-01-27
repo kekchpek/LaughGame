@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LaughGame.Assets.Scripts.Model.Abilities
 {
-    interface IHealth
+    public interface IHealth
     {
 
         void TakeDamage(float amount);
