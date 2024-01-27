@@ -70,7 +70,7 @@ namespace LaughGame.Interaction.Npc
             var t = transform;
             _velocity = velocity;
             if (_velocity.x > 0f && t.localScale.x > 0 ||
-                _velocity.x < 0f && t.localScale.y < 0)
+                _velocity.x < 0f && t.localScale.x < 0)
             {
                 var s = t.localScale;
                 s.x = -s.x;
