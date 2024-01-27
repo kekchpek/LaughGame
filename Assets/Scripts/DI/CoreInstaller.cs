@@ -1,5 +1,6 @@
 using LaughGame.GameResources;
 using LaughGame.Interaction.Npc;
+using LaughGame.Model.HapinessManager;
 using Zenject;
 
 namespace LaughGame.DI
@@ -9,7 +10,8 @@ namespace LaughGame.DI
         public override void InstallBindings()
         {
             Container.Install<GameResourcesInstaller>();
-            Container.Bind<IDamageReceiver>().To<DamageReceiver>().AsSingle();
+            Container.Bind<IPlayerDamageReceiver>().To<PlayerDamageReceiver>().AsSingle();
+            Container.Bind<IHappinessManager>().To<HappinessManager>().AsSingle();
         }
     }
 }
