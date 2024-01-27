@@ -108,7 +108,7 @@ RectTransform:
   m_Father: {fileID: 905518497372385720}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0.38, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -216,7 +216,7 @@ MonoBehaviour:
   _orientation: 0
   _value: 38
   _maxValue: 100
-  _foregroundRect: {fileID: 0}
+  _foregroundRect: {fileID: 79221743031940594}
 --- !u!1 &7602634022416815297
 GameObject:
   m_ObjectHideFlags: 0
