@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace LaughGame.Assets.Scripts.Model.Abilities
 {
-    interface IMovable
+    public interface IMovable
     {
         Transform MovableTransform { get; }
         bool SelfMovementEnabled { get; }
