@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _enemyChance: 0.9
-  _spawnTime: 1
+  _spawnTime: 0.5
   _enemyPrefabs:
   - {fileID: 4699213554976780669, guid: b632397ed136445e18360d676c867bf5, type: 3}
   _alliesPrefabs:

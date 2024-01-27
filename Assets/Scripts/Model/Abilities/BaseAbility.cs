@@ -18,7 +18,7 @@ namespace LaughGame.Assets.Scripts.Model.Abilities
 
         private int _statIndex = 0;
 
-        public IMovable AbilityParent => _entitiesProvider.GetMovablePlayer();
+        public IMovable AbilityParent => _entitiesProvider?.GetMovablePlayer();
 
         
 

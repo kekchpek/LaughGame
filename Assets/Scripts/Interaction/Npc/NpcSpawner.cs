@@ -44,7 +44,7 @@ namespace LaughGame.Interaction.Npc
             if (_time >= _spawnTime)
             {
                 Spawn();
-                _spawnTime *= 0.99f;
+                _spawnTime *= 0.996f;
                 _time = 0f;
             }
         }

@@ -63,7 +63,7 @@ namespace LaughGame.Assets.Scripts.Model.Abilities
 #if UNITY_EDITOR
         private void OnDrawGizmos()
         {
-            if (Application.isPlaying == false)
+            if (Application.isPlaying == false || AbilityParent == null)
                 return;
             UnityEditor.Handles.DrawWireDisc(AbilityParent.MovableTransform.position, Vector3.forward, _curStat.HitBoxRadius);
         }

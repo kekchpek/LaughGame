@@ -16,20 +16,14 @@ public class PlayerController : MonoBehaviour, IMovable
     StateManager states;
     Transform trans;
 
+    [SerializeField]
+    private Camera _camera;
+
     public Transform MovableTransform => trans;
 
     public bool SelfMovementEnabled { get => states.canMove; set => states.canMove = value; }
 
-    public Vector2 FacingDirection
-    {
-        get { return _facingDirection; }
-        set
-        {
-            if (value == Vector2.zero) return;
-
-            _facingDirection = value;
-        }
-    }
+    public Vector2 FacingDirection { get; private set; }
 
 
     private Vector2 _facingDirection;
@@ -56,7 +50,6 @@ public class PlayerController : MonoBehaviour, IMovable
         horizontal = Input.GetAxisRaw("Horizontal");
         vertical = Input.GetAxisRaw("Vertical");
         moveDirection = new Vector2(horizontal, vertical).normalized;
-        FacingDirection = moveDirection;
 
         if (horizontal > 0 && !states.lookRight) { states.lookRight = true; }
         else if (horizontal < 0 && states.lookRight) { states.lookRight = false; }
@@ -65,6 +58,11 @@ public class PlayerController : MonoBehaviour, IMovable
         else if (vertical < 0 && !states.lookDown) { states.lookDown = true; }
         else if (vertical == 0) { states.lookUp = false; states.lookDown = false; }
 
+        if (Physics.Raycast(_camera.ScreenPointToRay(Input.mousePosition), out var hit, float.PositiveInfinity))
+        {
+            FacingDirection = (hit.point - trans.position).normalized;
+        }
+        
     }
 
     private void FixedUpdate()

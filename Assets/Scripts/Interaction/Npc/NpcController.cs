@@ -7,7 +7,7 @@ using Random = UnityEngine.Random;
 
 namespace LaughGame.Interaction.Npc
 {
-    public class NpcController : MonoBehaviour, IHealth
+    public class NpcController : MonoBehaviour
     {
 
         [SerializeField]
@@ -91,6 +91,8 @@ namespace LaughGame.Interaction.Npc
         
         private void BecomeHappy()
         {
+            if (!string.IsNullOrEmpty(_resId))
+                return;
             _happinessManager.AddHappiness();
             Destroy(gameObject);
         }

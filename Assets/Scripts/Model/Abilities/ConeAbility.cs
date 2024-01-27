@@ -10,6 +10,10 @@ namespace LaughGame.Assets.Scripts.Model.Abilities
 {
     public class ConeAbility : BaseAbility<ConeAbilityStats>
     {
+
+        [SerializeField]
+        private ParticleSystem _particleSystem;
+        
         public override Sprite GetSprite()
         {
             return Resources.Load<Sprite>("Abilities/Cone");
@@ -18,6 +22,11 @@ namespace LaughGame.Assets.Scripts.Model.Abilities
         public override void Execute()
         {
             var enemies = GetEnemies();
+            
+            _particleSystem.Play();
+            var shape = _particleSystem.shape;
+            shape.angle = _curStat.ConeAngle;
+            _particleSystem.transform.LookAt(transform.position + (Vector3)AbilityParent.FacingDirection);
 
             foreach (var enemy in enemies)
             {
@@ -55,7 +64,7 @@ namespace LaughGame.Assets.Scripts.Model.Abilities
 #if UNITY_EDITOR
         private void OnDrawGizmos()
         {
-            if (Application.isPlaying == false)
+            if (Application.isPlaying == false || AbilityParent == null)
                 return;
 
 
