@@ -20,13 +20,17 @@ namespace LaughGame.Interaction.Npc
         private string _resId;
 
         private IResourcesService _resourcesService;
+        private IDamageReceiver _damageReceiver;
 
         private Vector3 _velocity;
 
         [Inject]
-        public void Construct(IResourcesService resourcesService)
+        public void Construct(
+            IResourcesService resourcesService,
+            IDamageReceiver damageReceiver)
         {
             _resourcesService = resourcesService;
+            _damageReceiver = damageReceiver;
         }
 
         private void FixedUpdate()
@@ -47,12 +51,13 @@ namespace LaughGame.Interaction.Npc
                 if (!string.IsNullOrEmpty(_resId))
                 {
                     _resourcesService.Add(_resId, 1f);
+                    Disappear(true);
                 }
                 if (_damage > 0f)
                 {
-                    
+                    _damageReceiver.DoDamage(_damage);
+                    Disappear(false);
                 }
-                Disappear();
             }
             else
             {
@@ -60,9 +65,9 @@ namespace LaughGame.Interaction.Npc
             }
         }
 
-        private void Disappear()
+        private void Disappear(bool isPositiveAnimation)
         {
-            
+            Destroy(gameObject);
         }
     }
 }
