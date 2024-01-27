@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour, IMovable
     public float speed = 1.0f;
 
     Vector2 moveDirection;
-    
+
     Rigidbody2D rb;
     StateManager states;
     Transform trans;
@@ -21,7 +21,19 @@ public class PlayerController : MonoBehaviour, IMovable
 
     public bool SelfMovementEnabled { get => states.canMove; set => states.canMove = value; }
 
-    public Vector2 Direction => moveDirection;
+    public Vector2 FacingDirection
+    {
+        get { return _facingDirection; }
+        set
+        {
+            if (value == Vector2.zero) return;
+
+            _facingDirection = value;
+        }
+    }
+
+
+    private Vector2 _facingDirection;
 
     void Start()
     {
@@ -37,6 +49,7 @@ public class PlayerController : MonoBehaviour, IMovable
         horizontal = Input.GetAxisRaw("Horizontal");
         vertical = Input.GetAxisRaw("Vertical");
         moveDirection = new Vector2(horizontal, vertical).normalized;
+        FacingDirection = moveDirection;
 
         if (horizontal > 0 && !states.lookRight) { states.lookRight = true; }
         else if (horizontal < 0 && states.lookRight) { states.lookRight = false; }

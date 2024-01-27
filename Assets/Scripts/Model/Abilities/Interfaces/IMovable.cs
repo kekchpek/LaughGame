@@ -12,7 +12,7 @@ namespace LaughGame.Assets.Scripts.Model.Abilities
         Transform MovableTransform { get; }
         bool SelfMovementEnabled { get; set; }
 
-        Vector2 Direction { get; }
+        Vector2 FacingDirection { get; set; }
 
         void Move(Vector2 movementVelocity);
 

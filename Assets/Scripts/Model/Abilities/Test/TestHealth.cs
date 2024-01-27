@@ -19,14 +19,15 @@ namespace LaughGame.Assets.Scripts.Model.Abilities.Test
         }
         public void Die()
         {
-            Destroy(this);
+            
+            Destroy(gameObject);
         }
 
 
 
         public void TakeDamage(float amount)
         {
-           Mathf.Clamp(_curHealth - amount, 0, MaxHealth);
+            _curHealth = Mathf.Clamp(_curHealth - amount, 0, MaxHealth);
 
             if (_curHealth <= 0)
                 Die();
