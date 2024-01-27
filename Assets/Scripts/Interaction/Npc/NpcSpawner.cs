@@ -23,7 +23,7 @@ namespace LaughGame.Interaction.Npc
         private List<GameObject> _alliesPrefabs = new();
 
         [SerializeField]
-        private Rect _spawnRect;
+        private List<Transform> _spawnPoints;
 
         private float _time;
 
@@ -61,9 +61,8 @@ namespace LaughGame.Interaction.Npc
                 npcToSpawn = _enemyPrefabs[randIndex];
             }
             var npc = _instantiator.InstantiatePrefab(npcToSpawn);
-            var position = new Vector3(
-                Random.Range(_spawnRect.xMin, _spawnRect.xMax),
-                Random.Range(_spawnRect.yMin, _spawnRect.yMax));
+            var spawnIndex = Random.Range(0, _spawnPoints.Count - 1);
+            var position = _spawnPoints[spawnIndex].position;
             npc.transform.position = position;
         }
     }

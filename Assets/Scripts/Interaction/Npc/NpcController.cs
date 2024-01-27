@@ -17,6 +17,7 @@ namespace LaughGame.Interaction.Npc
         [SerializeField]
         private float _damage;
 
+        [SerializeField]
         private string _resId;
 
         private IResourcesService _resourcesService;
@@ -38,7 +39,7 @@ namespace LaughGame.Interaction.Npc
             _rigidbody.velocity = default;
             if (_velocity == Vector3.zero)
             {
-                _velocity = Random.insideUnitCircle * _speed;
+                SetVelocity(Random.insideUnitCircle.normalized * _speed);
             }
 
             transform.position += _velocity * Time.fixedDeltaTime;
@@ -61,7 +62,20 @@ namespace LaughGame.Interaction.Npc
             }
             else
             {
-                _velocity = Quaternion.AngleAxis(Random.Range(-90f, 90f), Vector3.forward) * col.contacts[0].normal * _speed;
+                SetVelocity(Quaternion.AngleAxis(Random.Range(-80f, 80f), Vector3.forward) * col.contacts[0].normal.normalized * _speed);
+            }
+        }
+
+        private void SetVelocity(Vector2 velocity)
+        {
+            var t = transform;
+            _velocity = velocity;
+            if (_velocity.x > 0f && t.localScale.x > 0 ||
+                _velocity.x < 0f && t.localScale.x < 0)
+            {
+                var s = t.localScale;
+                s.x = -s.x;
+                t.localScale = s;
             }
         }
 
