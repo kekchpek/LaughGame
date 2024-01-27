@@ -55,13 +55,13 @@ namespace LaughGame.Interaction.Npc
             GameObject npcToSpawn;
             if (chance < _enemyChance)
             {
-                var randIndex = Random.Range(0, _enemyPrefabs.Count - 1);
+                var randIndex = Random.Range(0, _enemyPrefabs.Count);
                 npcToSpawn = _enemyPrefabs[randIndex];
             }
             else
             {
-                var randIndex = Random.Range(0, _alliesPrefabs.Count - 1);
-                npcToSpawn = _enemyPrefabs[randIndex];
+                var randIndex = Random.Range(0, _alliesPrefabs.Count);
+                npcToSpawn = _alliesPrefabs[randIndex];
             }
             var npc = _instantiator.InstantiatePrefab(npcToSpawn);
             var playerPos = _playerPositionProvider.GetPosition();
@@ -70,7 +70,7 @@ namespace LaughGame.Interaction.Npc
             var availableSpawns = _spawnPoints
                 .Where(x => Vector3.Distance(x.position, playerPos.Value) > 10f)
                 .ToArray();
-            var spawnIndex = Random.Range(0, availableSpawns.Length - 1);
+            var spawnIndex = Random.Range(0, availableSpawns.Length);
             var position = availableSpawns[spawnIndex].position;
             npc.transform.position = position;
         }

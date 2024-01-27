@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1956268920560207523}
   - component: {fileID: 4720180577138517259}
   m_Layer: 7
-  m_Name: Enemy
+  m_Name: CoolGreen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30,7 +30,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
+  m_LocalScale: {x: 0.48, y: 0.48, z: 0.48}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3961433182500827396}
@@ -50,8 +50,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speed: 5
   _rigidbody: {fileID: 1956268920560207523}
-  _damage: 1
-  _resId: 
+  _damage: 0
+  _resId: CoolGreen
 --- !u!58 &5286924561045921718
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -122,7 +122,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4699213554976780669}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 7cf182bad1f91456e914d42fa41ef449, type: 2}
   m_CullingMode: 0
@@ -208,7 +208,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: f6614165ee0c24277be6c90cb1a36003, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4bb88ab75836748389aac25964882d0f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

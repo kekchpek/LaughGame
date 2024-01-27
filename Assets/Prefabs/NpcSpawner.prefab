@@ -44,14 +44,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5d32616e6fc490c98ba76b0a974f824, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemyChance: 1
+  _enemyChance: 0.9
   _spawnTime: 1
   _enemyPrefabs:
   - {fileID: 4699213554976780669, guid: b632397ed136445e18360d676c867bf5, type: 3}
-  _alliesPrefabs: []
-  _spawnRect:
-    serializedVersion: 2
-    x: -45
-    y: -45
-    width: 90
-    height: 90
+  _alliesPrefabs:
+  - {fileID: 4699213554976780669, guid: 1347165ed3b2840f997cf30d4b71ad8d, type: 3}
+  - {fileID: 4699213554976780669, guid: 112ec7eccdc814da79e28e2718dd5e0d, type: 3}
+  - {fileID: 4699213554976780669, guid: 8d1aaab855d024002abdd0c9c439b5ff, type: 3}
+  - {fileID: 4699213554976780669, guid: b0c82add12576410fa8a0a7d25f18032, type: 3}
+  _spawnPoints: []

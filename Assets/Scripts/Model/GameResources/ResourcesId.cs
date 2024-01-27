@@ -6,14 +6,13 @@ namespace LaughGame.GameResources
     {
 
         public static readonly ResourceId LovePink = new(nameof(LovePink));
-        public static readonly ResourceId CoolOrange = new(nameof(CoolOrange));
+        public static readonly ResourceId CoolGreen = new(nameof(CoolGreen));
         public static readonly ResourceId EvilPurple = new(nameof(EvilPurple));
-        public static readonly ResourceId SurpriseCyan = new(nameof(SurpriseCyan));
-        public static readonly ResourceId Happiness = new(nameof(Happiness));
+        public static readonly ResourceId SurpriseOrange = new(nameof(SurpriseOrange));
 
         public static readonly IReadOnlyCollection<ResourceId> All = new[]
         {
-            LovePink, CoolOrange, EvilPurple, SurpriseCyan
+            LovePink, CoolGreen, EvilPurple, SurpriseOrange
         };
 
         private readonly string _id;

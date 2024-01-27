@@ -26,7 +26,7 @@ namespace LaughGame.Model.GameResources.Component
 
         private void OnResChanged(float val)
         {
-            _text.text = ((int)val).ToString();
+            _text.text = "x" + (int)val;
         }
 
         private void OnDestroy()
