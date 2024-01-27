@@ -1713,10 +1713,6 @@ PrefabInstance:
       value: NpcController
       objectReference: {fileID: 0}
     - target: {fileID: 4157898058679220992, guid: 779a84c7287c443188503a44468af330, type: 3}
-      propertyPath: _enemyChance
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4157898058679220992, guid: 779a84c7287c443188503a44468af330, type: 3}
       propertyPath: _spawnPoints.Array.size
       value: 13
       objectReference: {fileID: 0}
