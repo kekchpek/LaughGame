@@ -7,10 +7,10 @@ using UnityEngine;
 
 namespace LaughGame.Assets.Scripts.Model.Abilities
 {
-    interface IAbility
+    interface IMovable
     {
+        Transform MovableTransform { get; }
+        bool SelfMovementEnabled { get; }
 
-        public  IMovable AbilityParent { get; }
-        public void Execute();
     }
 }
