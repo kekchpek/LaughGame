@@ -29,6 +29,10 @@ namespace LaughGame.Assets.Scripts.Model.Abilities
             AbilityParent = entitiesProvider.GetMovablePlayer();
         }
 
+        private void Start()
+        {
+            _curStat = _stats[0];
+        }
 
         public abstract void Execute();
         public void Upgrade()

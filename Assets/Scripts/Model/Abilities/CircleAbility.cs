@@ -28,6 +28,8 @@ namespace LaughGame.Assets.Scripts.Model.Abilities
                 _curStat.Radius,
                 AbilitiesConfig.EnemiesLayerMask);
 
+          
+
             foreach (var collider in colliders)
             {
                 var health = collider.GetComponent<IHealth>();
@@ -36,6 +38,13 @@ namespace LaughGame.Assets.Scripts.Model.Abilities
             }
         }
 
+
+        private void OnDrawGizmos()
+        {
+            if (Application.isPlaying == false)
+                return;
+            UnityEditor.Handles.DrawWireDisc(transform.position, Vector3.up, _curStat.Radius);
+        }
 
     }
 }
