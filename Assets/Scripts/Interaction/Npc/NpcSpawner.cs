@@ -37,10 +37,11 @@ namespace LaughGame.Interaction.Npc
 
         private void Update()
         {
-            _time += _spawnTime;
+            _time += Time.deltaTime;
             if (_time >= _spawnTime)
             {
                 Spawn();
+                _time = 0f;
             }
         }
 

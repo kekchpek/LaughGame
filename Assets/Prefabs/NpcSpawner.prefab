@@ -9,8 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4682665218277079319}
+  - component: {fileID: 4157898058679220992}
   m_Layer: 0
-  m_Name: NpcController
+  m_Name: NpcSpawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31,3 +32,26 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4157898058679220992
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 954957445657671887}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5d32616e6fc490c98ba76b0a974f824, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _enemyChance: 1
+  _spawnTime: 1
+  _enemyPrefabs:
+  - {fileID: 4699213554976780669, guid: b632397ed136445e18360d676c867bf5, type: 3}
+  _alliesPrefabs: []
+  _spawnRect:
+    serializedVersion: 2
+    x: -50
+    y: -50
+    width: 100
+    height: 100
