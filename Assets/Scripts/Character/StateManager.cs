@@ -19,14 +19,13 @@ namespace LaughGame
         public bool ability3;
         public bool ability4;
 
-        SpriteRenderer sRenderer;
+        [SerializeField] SpriteRenderer sRenderer;
 
 
         // Start is called before the first frame update
         void Start()
         {
             //rb = GetComponent<Rigidbody2D>();
-            sRenderer = GetComponent<SpriteRenderer>();
             Initilize();
         }
 
@@ -38,7 +37,7 @@ namespace LaughGame
 
         private void FixedUpdate()
         {
-            sRenderer.flipX = !lookRight;
+            sRenderer.flipX = lookRight;
         }
 
         public void Initilize()
