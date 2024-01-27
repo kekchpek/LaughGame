@@ -1,4 +1,4 @@
-using LaughGame.Assets.Scripts.Model.Abilities;
+using System.Collections;
 using LaughGame.GameResources;
 using LaughGame.Model.HapinessManager;
 using UnityEngine;
@@ -22,11 +22,21 @@ namespace LaughGame.Interaction.Npc
         [SerializeField]
         private string _resId;
 
+        [SerializeField]
+        private Animator _animator;
+        
+        [SerializeField]
+        private Collider2D _collider;
+
+        private bool _walking = true;
+
         private IResourcesService _resourcesService;
         private IPlayerDamageReceiver _playerDamageReceiver;
         private IHappinessManager _happinessManager;
 
         private Vector3 _velocity;
+        private static readonly int Like = Animator.StringToHash("Like");
+        private static readonly int Die = Animator.StringToHash("Die");
 
         [Inject]
         public void Construct(
@@ -47,7 +57,10 @@ namespace LaughGame.Interaction.Npc
                 SetVelocity(Random.insideUnitCircle.normalized * _speed);
             }
 
-            transform.position += _velocity * Time.fixedDeltaTime;
+            if (_walking)
+            {
+                transform.position += _velocity * Time.fixedDeltaTime;
+            }
         }
 
         private void OnCollisionEnter2D(Collision2D col)
@@ -57,12 +70,12 @@ namespace LaughGame.Interaction.Npc
                 if (!string.IsNullOrEmpty(_resId))
                 {
                     _resourcesService.Add(_resId, 1f);
-                    Disappear(true);
+                    StartCoroutine(Disappear(true));
                 }
                 if (_damage > 0f)
                 {
                     _playerDamageReceiver.DoDamage(_damage);
-                    Disappear(false);
+                    StartCoroutine(Disappear(false));
                 }
             }
             else
@@ -84,22 +97,30 @@ namespace LaughGame.Interaction.Npc
             }
         }
 
-        private void Disappear(bool isPositiveAnimation)
+        private IEnumerator Disappear(bool isPositiveAnimation)
         {
+            _animator.SetTrigger(Die);
+            Destroy(_collider);
+            _walking = false;
+            yield return new WaitForSeconds(0.3f);
             Destroy(gameObject);
         }
         
-        private void BecomeHappy()
+        private IEnumerator BecomeHappy()
         {
             if (!string.IsNullOrEmpty(_resId))
-                return;
+                yield break;
+            _walking = false;
+            Destroy(_collider);
+            _animator.SetTrigger(Like);
             _happinessManager.AddHappiness();
+            yield return new WaitForSeconds(1f);
             Destroy(gameObject);
         }
 
         public void TakeDamage(float amount)
         {
-            BecomeHappy();
+            StartCoroutine(BecomeHappy());
         }
 
     }
