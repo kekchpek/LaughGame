@@ -160,6 +160,8 @@ namespace LaughGame.Interaction.Npc
         {
             if (_isBoss)
             {
+                if (_health <= 0f)
+                    return;
                 _walking = false;
                 _animator.SetTrigger(Damage);
                 _health -= amount;
