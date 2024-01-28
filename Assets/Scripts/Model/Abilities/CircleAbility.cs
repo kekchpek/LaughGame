@@ -1,18 +1,14 @@
 ﻿using LaughGame.Assets.Scripts.Model.Abilities.Stats;
-using LaughGame.Model.Abilities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
-using Zenject;
 
 namespace LaughGame.Assets.Scripts.Model.Abilities
 {
     class CircleAbility : BaseAbility<CircleAbilityStats>
     {
         [SerializeField] private LayerMask _enemyMask;
+
+        [SerializeField]
+        private ParticleSystem _particleSystem;
 
 
         public override string AnimationName => "Microphone";
@@ -25,7 +21,9 @@ namespace LaughGame.Assets.Scripts.Model.Abilities
 
         public override void Execute()
         {
-
+            var sol = _particleSystem.sizeOverLifetime;
+            sol.sizeMultiplier = _curStat.Radius * 2;
+            _particleSystem.Play();
             var colliders = Physics2D.OverlapCircleAll(
                 AbilityParent.MovableTransform.position,
                 _curStat.Radius,
