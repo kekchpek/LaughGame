@@ -8,6 +8,9 @@ namespace LaughGame.Assets.Scripts.Model.Abilities
     public class LineAbility : BaseAbility<LineAbilityStats>
     {
 
+        [SerializeField]
+        private GameObject _banana;
+        
         public override string AnimationName => "Banana";
         public override string UpgradeDescription => "+distance";
         
@@ -22,6 +25,7 @@ namespace LaughGame.Assets.Scripts.Model.Abilities
 
         public override void Execute()
         {
+            _banana.SetActive(true);
             if (_routine != null)
                 StopCoroutine(_routine);
 
@@ -61,6 +65,7 @@ namespace LaughGame.Assets.Scripts.Model.Abilities
                 yield return new WaitForFixedUpdate();
             }
             AbilityParent.SelfMovementEnabled = true;
+            _banana.SetActive(false);
             _routine = null;
         }
 
