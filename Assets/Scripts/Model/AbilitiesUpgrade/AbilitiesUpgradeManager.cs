@@ -36,11 +36,15 @@ namespace LaughGame.Model.AbilitiesUpgrade
                 availableAbilities[(rand + 1) % availableAbilities.Length] };
         }
 
-        public async Task StartUpgrade()
+        public async Task<bool> StartUpgrade()
         {
+            var upgrades = GetAbilitiesToUpgrade();
+            if (upgrades.Length == 0)
+                return false;
             Time.timeScale = 0f;
-            await _abilitiesPopup.Upgrade(GetAbilitiesToUpgrade());
+            await _abilitiesPopup.Upgrade(upgrades);
             Time.timeScale = 1f;
+            return true;
         }
     }
 }

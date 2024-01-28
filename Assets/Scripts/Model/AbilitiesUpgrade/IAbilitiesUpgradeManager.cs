@@ -5,6 +5,6 @@ namespace LaughGame.Model.AbilitiesUpgrade
     public interface IAbilitiesUpgradeManager
     {
         void SetPopup(IAbilitiesPopup abilitiesPopup);
-        Task StartUpgrade();
+        Task<bool> StartUpgrade();
     }
 }

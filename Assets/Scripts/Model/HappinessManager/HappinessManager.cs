@@ -29,8 +29,11 @@ namespace LaughGame.Model.HapinessManager
             _happiness.Value += HappinessBonus;
             while (_happiness.Value > MaxHappinessValue)
             {
-                await _upgradeManager.StartUpgrade();
-                _happiness.Value -= MaxHappinessValue;
+                var isUpgraded = await _upgradeManager.StartUpgrade();
+                if (isUpgraded)
+                    _happiness.Value -= MaxHappinessValue * 0.5f;
+                else
+                    _happiness.Value = MaxHappinessValue;
             }
         }
 
