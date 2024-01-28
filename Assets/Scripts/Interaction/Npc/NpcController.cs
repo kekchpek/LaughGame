@@ -117,7 +117,7 @@ namespace LaughGame.Interaction.Npc
             {
                 _particleEffectsProvider.PlayDrops(_transform.position);
             }
-            yield return new WaitForSeconds(0.3f);
+            yield return new WaitForSeconds(0.4f);
             Destroy(gameObject);
         }
         
@@ -129,7 +129,7 @@ namespace LaughGame.Interaction.Npc
             _collider.enabled = false;
             _animator.SetTrigger(Like);
             _happinessManager.AddHappiness();
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(2.5f);
             Destroy(gameObject);
         }
 
