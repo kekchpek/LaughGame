@@ -28,6 +28,8 @@ namespace LaughGame.Assets.Scripts.Model.Abilities
             _particleSystem.Play();
             var shape = _particleSystem.shape;
             shape.angle = _curStat.ConeAngle;
+            var emission = _particleSystem.emission;
+            emission.rateOverTimeMultiplier = 2000f * (_curStat.ConeAngle / 30f) * (_curStat.ConeAngle / 30f);
             _particleSystem.transform.LookAt(transform.position + (Vector3)AbilityParent.FacingDirection);
 
             foreach (var enemy in enemies)
