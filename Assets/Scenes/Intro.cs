@@ -8,7 +8,7 @@ public class Intro : MonoBehaviour
 {
     public List<Image> introImages;
     public Image frame;
-    public float fadeDuration = 1.0f;
+    public float fadeDuration = 1.5f;
 
     private int currentIndex = 0;
     private bool skipImage = false;
@@ -27,42 +27,63 @@ public class Intro : MonoBehaviour
 
     private IEnumerator ShowIntro()
     {
+        bool isFirstOrSecondImage = false; 
+
         foreach (Image image in introImages)
         {
             if (currentIndex == 5) frame.gameObject.SetActive(false);
-            image.color = new Color(image.color.r, image.color.g, image.color.b, 0f);
+
             image.gameObject.SetActive(true);
-            float timer = 0.0f;
 
-            while (timer < fadeDuration)
+            if (isFirstOrSecondImage)
             {
-                float alpha = Mathf.Lerp(0f, 1f, timer / fadeDuration);
+                image.color = new Color(image.color.r, image.color.g, image.color.b, 0f);
+                float timer = 0.0f;
 
-                image.color = new Color(image.color.r, image.color.g, image.color.b, alpha);
-
-                timer += Time.deltaTime;
-
-                if (skipImage)
+                while (timer < fadeDuration)
                 {
-                    break;
+                    float alpha = Mathf.Lerp(0f, 1f, timer / fadeDuration);
+
+                    image.color = new Color(image.color.r, image.color.g, image.color.b, alpha);
+
+                    timer += Time.deltaTime;
+
+                    if (Input.anyKeyDown)
+                    {
+                        break; 
+                    }
+
+                    yield return null;
                 }
 
-                yield return null;
-            }
+                if (!Input.anyKeyDown)
+                {
+                    yield return new WaitForSeconds(imageDisplayTime);
+                }
 
-            if (!skipImage)
-            {
                 image.color = new Color(image.color.r, image.color.g, image.color.b, 1f);
-                yield return new WaitForSeconds(imageDisplayTime);
+            }
+            else
+            {
+               
+                float timer = 0.0f;
+                while (timer < imageDisplayTime)
+                {
+                    if (Input.anyKeyDown)
+                    {
+                        break; 
+                    }
+                    timer += Time.deltaTime;
+                    yield return null;
+                }
             }
 
             image.gameObject.SetActive(false);
 
-            if(currentIndex == 0) frame.gameObject.SetActive(true); 
-            
+            if (currentIndex == 0) frame.gameObject.SetActive(true);
 
+            isFirstOrSecondImage = !isFirstOrSecondImage; 
             currentIndex++;
-            skipImage = false;
         }
 
         SceneManager.LoadScene("MainMenu");
