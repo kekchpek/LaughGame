@@ -660,15 +660,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 643f77ae65d04d9aac7c94806ae7c5d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _soundButton: {fileID: 5519581524755547841}
-  _musicButton: {fileID: 5688819752537217722}
+  _soundButton: {fileID: 5688819752537217722}
+  _musicButton: {fileID: 5519581524755547841}
   _exitButton: {fileID: 6538061630398685889}
-  _soundImage: {fileID: 7604863889651453427}
-  _musicImage: {fileID: 7862066541655384267}
-  _soundOn: {fileID: 21300000, guid: 051b00e83134c455a8b3b7bbee1f5d2d, type: 3}
-  _soundOff: {fileID: 21300000, guid: 699874289370c4d47be7dd22b4507463, type: 3}
-  _musicOn: {fileID: 21300000, guid: b6cd7febb19a94bac9efd3389c469e65, type: 3}
-  _musicOff: {fileID: 21300000, guid: 3ff3f8b84433b4d4491f7d0789b6114d, type: 3}
+  _soundImage: {fileID: 7862066541655384267}
+  _musicImage: {fileID: 7604863889651453427}
+  _soundOn: {fileID: 21300000, guid: b6cd7febb19a94bac9efd3389c469e65, type: 3}
+  _soundOff: {fileID: 21300000, guid: 3ff3f8b84433b4d4491f7d0789b6114d, type: 3}
+  _musicOn: {fileID: 21300000, guid: 051b00e83134c455a8b3b7bbee1f5d2d, type: 3}
+  _musicOff: {fileID: 21300000, guid: 699874289370c4d47be7dd22b4507463, type: 3}
 --- !u!1 &1610012785719115320
 GameObject:
   m_ObjectHideFlags: 0
@@ -1998,7 +1998,7 @@ GameObject:
   - component: {fileID: 5688819752537217722}
   - component: {fileID: 2143799663656513313}
   m_Layer: 0
-  m_Name: Music
+  m_Name: Sound
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3498,7 +3498,7 @@ GameObject:
   - component: {fileID: 5519581524755547841}
   - component: {fileID: 5569054739783746244}
   m_Layer: 0
-  m_Name: Sound
+  m_Name: Music
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
