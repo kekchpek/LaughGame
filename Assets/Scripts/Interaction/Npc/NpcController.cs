@@ -1,6 +1,7 @@
 using System.Collections;
 using LaughGame.GameResources;
 using LaughGame.Interaction.ParticleEffects;
+using LaughGame.Interaction.Win;
 using LaughGame.Model.HapinessManager;
 using UnityEngine;
 using Zenject;
@@ -152,7 +153,7 @@ namespace LaughGame.Interaction.Npc
                 _health -= amount;
                 if (_health <= 0f)
                 {
-                    Debug.Log("WIN");
+                    WinView.Instance.Show();
                 }
                 else
                 {
