@@ -526,23 +526,23 @@ MonoBehaviour:
   - Damage: 1
     Speed: 20
     Distance: 30
-    HitBoxRadius: 2
+    HitBoxRadius: 4
   - Damage: 1
     Speed: 20
     Distance: 40
-    HitBoxRadius: 2
+    HitBoxRadius: 4
   - Damage: 1
     Speed: 20
     Distance: 50
-    HitBoxRadius: 2
+    HitBoxRadius: 4
   - Damage: 1
     Speed: 20
     Distance: 60
-    HitBoxRadius: 2
+    HitBoxRadius: 4
   - Damage: 1
     Speed: 20
     Distance: 70
-    HitBoxRadius: 2
+    HitBoxRadius: 4
 --- !u!1 &4212665291131339684
 GameObject:
   m_ObjectHideFlags: 0
