@@ -41,8 +41,10 @@ namespace LaughGame.Model.AbilitiesManagement
             }
         }
 
-        public AbilityData Get(int index)
+        public AbilityData? Get(int index)
         {
+            if (index >= _abilities.Length)
+                return null;
             return _abilities[index];
         }
 

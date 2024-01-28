@@ -69,7 +69,7 @@ namespace LaughGame.Interaction.UI
 
         private void UpdateIsAvailable()
         {
-            var isAvailable = _abilitiesManager.Get(_index).Price
+            var isAvailable = _abilitiesManager.Get(_index)!.Value.Price
                 .Where(x => x.HasValue)
                 .Select(x => x.Value)
                 .GroupBy(x => x)
@@ -82,13 +82,16 @@ namespace LaughGame.Interaction.UI
         private void UpdateAbility()
         {
             var data = _abilitiesManager.Get(_index);
-            _image.sprite = data.Ability.GetSprite();
-            _priceView.SetPrice(data.Price);
+            if (!data.HasValue || data.Value.Ability == null)
+                return;
+
+            _image.sprite = data.Value.Ability.GetSprite();
+            _priceView.SetPrice(data.Value.Price);
             if (_level != null)
             {
                 _level.Unbind(_stars.SetStars);
             }
-            _level = data.Ability.CurrentLevel;
+            _level = data.Value.Ability.CurrentLevel;
             _level.Bind(_stars.SetStars);
             UpdateIsAvailable();
         }
@@ -107,7 +110,7 @@ namespace LaughGame.Interaction.UI
 
         private string GetAbilityAnimation()
         {
-            return _abilitiesManager.Get(_index).Ability.AnimationName;
+            return _abilitiesManager.Get(_index)!.Value.Ability.AnimationName;
         }
 
         private void OnDestroy()
