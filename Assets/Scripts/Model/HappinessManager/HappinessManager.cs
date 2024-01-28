@@ -1,6 +1,7 @@
 using System;
 using AsyncReactAwait.Bindable;
 using LaughGame.Interaction.Boss;
+using LaughGame.Interaction.Lose;
 using LaughGame.Interaction.PlayerAnimations;
 using LaughGame.Model.AbilitiesUpgrade;
 
@@ -66,7 +67,7 @@ namespace LaughGame.Model.HapinessManager
             _happiness.Value -= val;
             if (_happiness.Value < 0f)
             {
-                // Lose
+                LoseView.Instance.Show();
             }
         }
 
