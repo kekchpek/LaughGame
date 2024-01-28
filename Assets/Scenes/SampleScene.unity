@@ -10539,7 +10539,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4157898058679220992, guid: 779a84c7287c443188503a44468af330, type: 3}
       propertyPath: _spawnTime
-      value: 0.1
+      value: 0.9
       objectReference: {fileID: 0}
     - target: {fileID: 4157898058679220992, guid: 779a84c7287c443188503a44468af330, type: 3}
       propertyPath: _enemyChance
