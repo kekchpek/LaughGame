@@ -153,7 +153,7 @@ namespace LaughGame.Interaction.Npc
                 _health -= amount;
                 if (_health <= 0f)
                 {
-                    WinView.Instance.Show();
+                    StartCoroutine(Win());
                 }
                 else
                 {
@@ -164,6 +164,13 @@ namespace LaughGame.Interaction.Npc
             {
                 StartCoroutine(BecomeHappy());
             }
+        }
+
+        private IEnumerator Win()
+        {
+            _animator.SetTrigger("Win");
+            yield return new WaitForSeconds(2f);
+            WinView.Instance.Show();
         }
 
         private IEnumerator StartWalking()
