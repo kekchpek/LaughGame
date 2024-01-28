@@ -49,6 +49,7 @@ namespace LaughGame.Assets.Scripts.Model.Abilities
             _curStat = _stats[_statIndex];
         }
 
+        public abstract string AnimationName { get; }
         public abstract string UpgradeDescription { get; }
         public int CurrentLevel => _statIndex;
         public bool CanUpgrade => _statIndex < _stats.Count - 1;

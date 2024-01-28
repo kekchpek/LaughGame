@@ -8,7 +8,7 @@ namespace LaughGame.Assets.Scripts.Model.Abilities
 {
     public class LightningAbility : BaseAbility<LightningAbilityStats>
     {
-
+        public override string AnimationName => "Phone";
         public override string UpgradeDescription => "+targets count";
         
         [SerializeField] private LineRenderer _lineRenderer;

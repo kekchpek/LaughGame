@@ -10,7 +10,7 @@ namespace LaughGame.Assets.Scripts.Model.Abilities
 {
     public class ConeAbility : BaseAbility<ConeAbilityStats>
     {
-
+        public override string AnimationName => "Gun";
         public override string UpgradeDescription => "+angle";
 
         [SerializeField]

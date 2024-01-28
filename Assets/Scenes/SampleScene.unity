@@ -233,6 +233,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 809196821710215603, guid: 121805811375bdc41a54b94df7ec53af, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 2381269443079595999, guid: 121805811375bdc41a54b94df7ec53af, type: 3}
       propertyPath: offset.x
       value: 0
@@ -244,6 +248,10 @@ PrefabInstance:
     - target: {fileID: 2381269443079595999, guid: 121805811375bdc41a54b94df7ec53af, type: 3}
       propertyPath: offset.z
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2424374846307778339, guid: 121805811375bdc41a54b94df7ec53af, type: 3}
+      propertyPath: m_Mesh
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 2468900678318584552, guid: 121805811375bdc41a54b94df7ec53af, type: 3}
       propertyPath: m_Name
@@ -773,6 +781,10 @@ PrefabInstance:
     - target: {fileID: 954957445657671887, guid: 779a84c7287c443188503a44468af330, type: 3}
       propertyPath: m_Name
       value: NpcController
+      objectReference: {fileID: 0}
+    - target: {fileID: 4157898058679220992, guid: 779a84c7287c443188503a44468af330, type: 3}
+      propertyPath: _spawnTime
+      value: 0.9
       objectReference: {fileID: 0}
     - target: {fileID: 4157898058679220992, guid: 779a84c7287c443188503a44468af330, type: 3}
       propertyPath: _enemyChance

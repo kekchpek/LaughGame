@@ -1,8 +1,11 @@
 using LaughGame;
 using LaughGame.Assets.Scripts.Model.Abilities;
+using LaughGame.Interaction.PlayerAnimations;
 using LaughGame.Model.Abilities;
 using UnityEngine;
 using Zenject;
+using Spine;
+using Spine.Unity;
 
 public class PlayerController : MonoBehaviour, IMovable
 {
@@ -29,10 +32,13 @@ public class PlayerController : MonoBehaviour, IMovable
     private Vector2 _facingDirection;
 
     private IAbilitiesEntitiesProvider _abilitiesEntitiesProvider;
+    private IPlayerAnimationProvider _playerAnimationProvider;
     
     [Inject]
-    public void Consruct(IAbilitiesEntitiesProvider abilitiesEntitiesProvider)
+    public void Consruct(IAbilitiesEntitiesProvider abilitiesEntitiesProvider,
+        IPlayerAnimationProvider playerAnimationProvider)
     {
+        _playerAnimationProvider = playerAnimationProvider;
         _abilitiesEntitiesProvider = abilitiesEntitiesProvider;
         _abilitiesEntitiesProvider.SetMovable(this);
     }
@@ -81,6 +87,7 @@ public class PlayerController : MonoBehaviour, IMovable
     public void Move(Vector2 movementVelocity)
     {
         rb.velocity = movementVelocity;
+        _playerAnimationProvider.SetWalk(movementVelocity.x != 0f || movementVelocity.y != 0f);
     }
 
     private void OnDestroy()

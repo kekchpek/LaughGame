@@ -15,6 +15,7 @@ namespace LaughGame.Assets.Scripts.Model.Abilities
         [SerializeField] private LayerMask _enemyMask;
 
 
+        public override string AnimationName => "Microphone";
         public override string UpgradeDescription => "+radius";
         
         public override Sprite GetSprite()

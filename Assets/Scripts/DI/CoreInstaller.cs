@@ -1,6 +1,7 @@
 using LaughGame.Assets.Scripts.Model.Abilities;
 using LaughGame.GameResources;
 using LaughGame.Interaction.Npc;
+using LaughGame.Interaction.PlayerAnimations;
 using LaughGame.Model.Abilities;
 using LaughGame.Model.Abilities.AbilitiesRegister;
 using LaughGame.Model.AbilitiesManagement;
@@ -23,6 +24,7 @@ namespace LaughGame.DI
             Container.Bind<IAbilitiesRegister>().To<AbilitiesRegister>().AsSingle();
             Container.Bind<IAbilitiesManager>().To<AbilityManager>().AsSingle();
             Container.Bind<IAbilitiesUpgradeManager>().To<AbilitiesUpgradeManager>().AsSingle();
+            Container.Bind<IPlayerAnimationProvider>().To<PlayerAnimationProvider>().AsSingle();
         }
     }
 }

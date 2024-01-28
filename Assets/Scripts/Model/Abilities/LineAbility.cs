@@ -8,6 +8,7 @@ namespace LaughGame.Assets.Scripts.Model.Abilities
     public class LineAbility : BaseAbility<LineAbilityStats>
     {
 
+        public override string AnimationName => "Banana";
         public override string UpgradeDescription => "+distance";
         
         private Coroutine _routine;

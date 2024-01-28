@@ -19,6 +19,8 @@ namespace LaughGame
         public bool ability3;
         public bool ability4;
 
+        private Transform _transform;
+
         [SerializeField] SpriteRenderer sRenderer;
 
 
@@ -26,6 +28,7 @@ namespace LaughGame
         void Start()
         {
             //rb = GetComponent<Rigidbody2D>();
+            _transform = transform;
             Initilize();
         }
 
@@ -37,7 +40,14 @@ namespace LaughGame
 
         private void FixedUpdate()
         {
-            sRenderer.flipX = lookRight;
+            if (lookRight && _transform.localScale.x > 0f)
+            {
+                _transform.localScale = Vector3.Scale(_transform.localScale, new Vector3(-1f, 1f, 1f));
+            }
+            if (!lookRight && _transform.localScale.x < 0f)
+            {
+                _transform.localScale = Vector3.Scale(_transform.localScale, new Vector3(-1f, 1f, 1f));
+            }
         }
 
         public void Initilize()

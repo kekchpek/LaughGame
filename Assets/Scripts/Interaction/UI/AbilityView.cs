@@ -1,5 +1,6 @@
 using System.Linq;
 using LaughGame.GameResources;
+using LaughGame.Interaction.PlayerAnimations;
 using LaughGame.Model.AbilitiesManagement;
 using LaughGame.Model.AbilitiesUpgrade;
 using UnityEngine;
@@ -35,14 +36,17 @@ namespace LaughGame.Interaction.UI
         private IResourcesModel _resourcesModel;
 
         private IAbilitiesManager _abilitiesManager;
+        private IPlayerAnimationProvider _playerAnimationProvider;
 
         [Inject]
         public void Construct(
             IAbilitiesManager abilitiesManager,
-            IResourcesModel resourcesModel)
+            IResourcesModel resourcesModel,
+            IPlayerAnimationProvider playerAnimationProvider)
         {
             _resourcesModel = resourcesModel;
             _abilitiesManager = abilitiesManager;
+            _playerAnimationProvider = playerAnimationProvider;
             _abilitiesManager.AbilityUpdated += OnAbilityChanged;
             _resourcesModel.ResourceChanged += OnResourceChanged;
         }
@@ -85,8 +89,14 @@ namespace LaughGame.Interaction.UI
         {
             if (Input.GetKeyDown((_index + 1).ToString()))
             {
+                _playerAnimationProvider.PlaySkill(GetAbilityAnimation());
                 _abilitiesManager.Use(_index);
             }
+        }
+
+        private string GetAbilityAnimation()
+        {
+            return _abilitiesManager.Get(_index).Ability.AnimationName;
         }
 
         private void OnDestroy()
