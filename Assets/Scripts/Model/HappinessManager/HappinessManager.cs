@@ -65,7 +65,7 @@ namespace LaughGame.Model.HapinessManager
                 _level++;
             }
 
-            if (_level > 0)
+            if (_level > 1)
             {
                 _bossSpawner.SpawnBoss();
             }
