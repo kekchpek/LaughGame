@@ -26,6 +26,8 @@ namespace LaughGame.Model.Audio
         public AudioClip EnemyDie;
         public AudioClip BossHit;
         public AudioClip LevelUp;
+        
+        public List<AudioClip> Intro = new();
 
     }
     

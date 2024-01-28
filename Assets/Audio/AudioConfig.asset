@@ -35,3 +35,9 @@ MonoBehaviour:
   EnemyDie: {fileID: 8300000, guid: 6ce72328f32cc43edbdb45e74b139750, type: 3}
   BossHit: {fileID: 8300000, guid: d0e90dbabb6aa4df293b7a9749de88c3, type: 3}
   LevelUp: {fileID: 8300000, guid: f88aeff8991904d4bbb98de49c271ad1, type: 3}
+  Intro:
+  - {fileID: 8300000, guid: f59f8ce184e9f4f4a8a11b3f41303372, type: 3}
+  - {fileID: 8300000, guid: f8c2595adca064c839d3679d68c39506, type: 3}
+  - {fileID: 8300000, guid: 3ddfbc46a25fa4b20a87f99b95529aed, type: 3}
+  - {fileID: 8300000, guid: fa6124a24243c45918c11a61ddcaf5ca, type: 3}
+  - {fileID: 8300000, guid: 5424f3b3a14f342a7a2ff93e773d9cc4, type: 3}

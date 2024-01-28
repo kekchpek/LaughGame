@@ -1,19 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
+using Finespace.LofiLegends.MVVM.Models.Audio;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using Zenject;
 
 public class Intro : MonoBehaviour
 {
     public List<Image> introImages;
-    public Image frame;
     public float fadeDuration = 1.5f;
+    public List<float> _displayTimes = new ();
 
     private int currentIndex = 0;
     private bool skipImage = false;
-    private float imageDisplayTime = 3.0f;
 
+    private IAudioManager _audioManager;
+    
+    [Inject]
+    public void Construct(
+        IAudioManager audioManager)
+    {
+        _audioManager = audioManager;
+    }
+    
     void Start()
     {
         StartCoroutine(ShowIntro());
@@ -31,11 +41,14 @@ public class Intro : MonoBehaviour
 
         foreach (Image image in introImages)
         {
-            if (currentIndex == 5) frame.gameObject.SetActive(false);
+            if (currentIndex > 0)
+            {
+                _audioManager.Play(_audioManager.AudioConfig.Intro[currentIndex-1]);
+            }
 
             image.gameObject.SetActive(true);
 
-            if (isFirstOrSecondImage)
+            if (currentIndex < 2)
             {
                 image.color = new Color(image.color.r, image.color.g, image.color.b, 0f);
                 float timer = 0.0f;
@@ -58,7 +71,7 @@ public class Intro : MonoBehaviour
 
                 if (!Input.anyKeyDown)
                 {
-                    yield return new WaitForSeconds(imageDisplayTime);
+                    yield return new WaitForSeconds(_displayTimes[currentIndex]);
                 }
 
                 image.color = new Color(image.color.r, image.color.g, image.color.b, 1f);
@@ -67,7 +80,7 @@ public class Intro : MonoBehaviour
             {
                
                 float timer = 0.0f;
-                while (timer < imageDisplayTime)
+                while (timer < _displayTimes[currentIndex])
                 {
                     if (Input.anyKeyDown)
                     {
@@ -79,10 +92,7 @@ public class Intro : MonoBehaviour
             }
 
             image.gameObject.SetActive(false);
-
-            if (currentIndex == 0) frame.gameObject.SetActive(true);
-
-            isFirstOrSecondImage = !isFirstOrSecondImage; 
+            
             currentIndex++;
         }
 
