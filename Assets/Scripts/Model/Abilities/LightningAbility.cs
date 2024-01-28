@@ -24,6 +24,7 @@ namespace LaughGame.Assets.Scripts.Model.Abilities
 
         public override void Execute()
         {
+            AudioManager.Play(AudioManager.AudioConfig.Phone);
             if (_routine != null)
                 StopCoroutine(_routine);
 

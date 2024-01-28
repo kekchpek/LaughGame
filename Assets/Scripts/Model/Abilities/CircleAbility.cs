@@ -21,6 +21,7 @@ namespace LaughGame.Assets.Scripts.Model.Abilities
 
         public override void Execute()
         {
+            AudioManager.Play(AudioManager.AudioConfig.Mic);
             var sol = _particleSystem.sizeOverLifetime;
             sol.sizeMultiplier = _curStat.Radius * 2;
             _particleSystem.Play();

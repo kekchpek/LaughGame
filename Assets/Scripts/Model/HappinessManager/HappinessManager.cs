@@ -1,5 +1,6 @@
 using System;
 using AsyncReactAwait.Bindable;
+using Finespace.LofiLegends.MVVM.Models.Audio;
 using LaughGame.Interaction.Boss;
 using LaughGame.Interaction.Lose;
 using LaughGame.Interaction.PlayerAnimations;
@@ -12,6 +13,7 @@ namespace LaughGame.Model.HapinessManager
         private readonly IAbilitiesUpgradeManager _upgradeManager;
         private readonly IPlayerAnimationProvider _playerAnimationProvider;
         private readonly IBossSpawner _bossSpawner;
+        private readonly IAudioManager _audioManager;
         private const float MaxHappinessValue = 100f;
         private const float HappinessBonus = 2f;
 
@@ -25,11 +27,13 @@ namespace LaughGame.Model.HapinessManager
         public HappinessManager(
             IAbilitiesUpgradeManager upgradeManager,
             IPlayerAnimationProvider playerAnimationProvider,
-            IBossSpawner bossSpawner)
+            IBossSpawner bossSpawner,
+            IAudioManager audioManager)
         {
             _upgradeManager = upgradeManager;
             _playerAnimationProvider = playerAnimationProvider;
             _bossSpawner = bossSpawner;
+            _audioManager = audioManager;
             _happiness.Bind(OnHappinessChanged);
         }
 
@@ -48,6 +52,7 @@ namespace LaughGame.Model.HapinessManager
             _happiness.Value += HappinessBonus;
             while (_happiness.Value > MaxHappinessValue)
             {
+                _audioManager.Play(_audioManager.AudioConfig.LevelUp);
                 var isUpgraded = await _upgradeManager.StartUpgrade();
                 if (isUpgraded)
                     _happiness.Value -= MaxHappinessValue * 0.5f;
@@ -56,7 +61,7 @@ namespace LaughGame.Model.HapinessManager
                 _level++;
             }
 
-            if (_level > 9)
+            if (_level > 0)
             {
                 _bossSpawner.SpawnBoss();
             }
@@ -67,6 +72,7 @@ namespace LaughGame.Model.HapinessManager
             _happiness.Value -= val;
             if (_happiness.Value < 0f)
             {
+                _audioManager.Play(_audioManager.AudioConfig.Lose);
                 LoseView.Instance.Show();
             }
         }

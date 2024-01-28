@@ -1,4 +1,6 @@
 using System.Collections;
+using System.Collections.Generic;
+using Finespace.LofiLegends.MVVM.Models.Audio;
 using LaughGame.GameResources;
 using LaughGame.Interaction.ParticleEffects;
 using LaughGame.Interaction.Win;
@@ -44,6 +46,7 @@ namespace LaughGame.Interaction.Npc
         private IPlayerDamageReceiver _playerDamageReceiver;
         private IHappinessManager _happinessManager;
         private IParticleEffectsProvider _particleEffectsProvider;
+        private IAudioManager _audioManager;
 
         private Vector3 _velocity;
         private static readonly int Like = Animator.StringToHash("Like");
@@ -55,13 +58,15 @@ namespace LaughGame.Interaction.Npc
             IResourcesService resourcesService,
             IPlayerDamageReceiver playerDamageReceiver,
             IHappinessManager happinessManager,
-            IParticleEffectsProvider particleEffectsProvider)
+            IParticleEffectsProvider particleEffectsProvider,
+            IAudioManager audioManager)
         {
             _transform = transform;
             _resourcesService = resourcesService;
             _playerDamageReceiver = playerDamageReceiver;
             _happinessManager = happinessManager;
             _particleEffectsProvider = particleEffectsProvider;
+            _audioManager = audioManager;
         }
 
         private void FixedUpdate()
@@ -89,7 +94,7 @@ namespace LaughGame.Interaction.Npc
                 }
                 if (_damage > 0f)
                 {
-                    _playerDamageReceiver.DoDamage(_damage);
+                    _playerDamageReceiver.DoDamage(0);
                     if (!_isBoss)
                     {
                         StartCoroutine(Disappear(false));
@@ -120,14 +125,20 @@ namespace LaughGame.Interaction.Npc
             _animator.SetTrigger(Die);
             _collider.enabled = false;
             _walking = false;
+            List<AudioClip> clips;
             if (isPositiveAnimation)
             {
+                clips = _audioManager.AudioConfig.AllyCollision;
                 _particleEffectsProvider.PlayStars(_transform.position);
             }
             else
             {
+                clips = _audioManager.AudioConfig.EnemyCollision;
                 _particleEffectsProvider.PlayDrops(_transform.position);
             }
+
+            var rand = Random.Range(0, clips.Count);
+            _audioManager.Play(clips[rand]);
             yield return new WaitForSeconds(0.4f);
             Destroy(gameObject);
         }
@@ -139,6 +150,7 @@ namespace LaughGame.Interaction.Npc
             _walking = false;
             _collider.enabled = false;
             _animator.SetTrigger(Like);
+            _audioManager.Play(_audioManager.AudioConfig.EnemyDie);
             _happinessManager.AddHappiness();
             yield return new WaitForSeconds(2.5f);
             Destroy(gameObject);
@@ -153,10 +165,12 @@ namespace LaughGame.Interaction.Npc
                 _health -= amount;
                 if (_health <= 0f)
                 {
+                    _audioManager.Play(_audioManager.AudioConfig.Win);
                     StartCoroutine(Win());
                 }
                 else
                 {
+                    _audioManager.Play(_audioManager.AudioConfig.BossHit);
                     StartCoroutine(StartWalking());
                 }
             }

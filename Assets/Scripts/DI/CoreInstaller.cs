@@ -1,3 +1,4 @@
+using Finespace.LofiLegends.MVVM.Models.Audio;
 using LaughGame.Assets.Scripts.Model.Abilities;
 using LaughGame.GameResources;
 using LaughGame.Interaction.Boss;
@@ -21,6 +22,8 @@ namespace LaughGame.DI
         private ParticleEffectsProvider _particleEffectsProvider;
         [SerializeField]
         private BossSpawner _bossSpawner;
+        [SerializeField]
+        private AudioManager _audioManager;
         
         public override void InstallBindings()
         {
@@ -35,6 +38,7 @@ namespace LaughGame.DI
             Container.Bind<IPlayerAnimationProvider>().To<PlayerAnimationProvider>().AsSingle();
             Container.Bind<IParticleEffectsProvider>().FromInstance(_particleEffectsProvider);
             Container.Bind<IBossSpawner>().FromInstance(_bossSpawner);
+            Container.Bind<IAudioManager>().FromInstance(_audioManager);
         }
     }
 }

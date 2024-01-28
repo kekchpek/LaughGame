@@ -23,6 +23,7 @@ namespace LaughGame.Assets.Scripts.Model.Abilities
 
         public override void Execute()
         {
+            AudioManager.Play(AudioManager.AudioConfig.Gun);
             var enemies = GetEnemies();
             
             _particleSystem.Play();

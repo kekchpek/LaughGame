@@ -1,6 +1,7 @@
 ﻿using LaughGame.Assets.Scripts.Model.Abilities.Interfaces;
 using LaughGame.Model.Abilities;
 using System.Collections.Generic;
+using Finespace.LofiLegends.MVVM.Models.Audio;
 using LaughGame.Model.Abilities.AbilitiesRegister;
 using UnityEngine;
 using Zenject;
@@ -21,15 +22,17 @@ namespace LaughGame.Assets.Scripts.Model.Abilities
 
         public IMovable AbilityParent => _entitiesProvider?.GetMovablePlayer();
 
+        protected IAudioManager AudioManager;
         
-
         [Inject]
         public void Construct(
             IAbilitiesEntitiesProvider entitiesProvider,
-            IAbilitiesRegister abilitiesRegister)
+            IAbilitiesRegister abilitiesRegister,
+            IAudioManager audioManager)
         {
             abilitiesRegister.Register(this);
             _entitiesProvider = entitiesProvider;
+            AudioManager = audioManager;
         }
 
         private void Start()

@@ -25,6 +25,7 @@ namespace LaughGame.Assets.Scripts.Model.Abilities
 
         public override void Execute()
         {
+            AudioManager.Play(AudioManager.AudioConfig.Banana);
             _banana.SetActive(true);
             if (_routine != null)
                 StopCoroutine(_routine);

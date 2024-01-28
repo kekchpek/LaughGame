@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b718f6d0fb764684990d1cdef5a474a6, type: 3}
+  m_Name: AudioConfig
+  m_EditorClassIdentifier: 
+  MenuMusic: {fileID: 8300000, guid: 56a89e2f7b91c4b6f84293e972974af8, type: 3}
+  BossMusic: {fileID: 8300000, guid: dbc3b7fb72b9a4358a631a7eaa0e530f, type: 3}
+  BattleMusic: {fileID: 8300000, guid: 882f6051447f445158d2ec0d98e9597c, type: 3}
+  Banana: {fileID: 8300000, guid: 7fc6f32fab3e3427393769aa75406ab9, type: 3}
+  Gun: {fileID: 8300000, guid: 6b35dc83cd9b84f64be178af37d8708b, type: 3}
+  Mic: {fileID: 8300000, guid: 4665d13d5f389489c88a8b083f7670b7, type: 3}
+  Phone: {fileID: 8300000, guid: 2884504121ca54c0eb3583dbdb250762, type: 3}
+  AllyCollision:
+  - {fileID: 8300000, guid: 2c7a582415bc04826b03a9c8cb5b0855, type: 3}
+  - {fileID: 8300000, guid: 2920a8f48772e41a0b93ae53b52c61fd, type: 3}
+  - {fileID: 8300000, guid: e07e0dd93542c45dea44eccc14ad4759, type: 3}
+  - {fileID: 8300000, guid: 2ff50d84070ee499cb7d5efff403806a, type: 3}
+  EnemyCollision:
+  - {fileID: 8300000, guid: 4de58e73e0f454d50a2383653bd12c26, type: 3}
+  - {fileID: 8300000, guid: b0de938f381cf478596b6430a6d77dd0, type: 3}
+  - {fileID: 8300000, guid: 49b9da6b10f9b40feb8e96a3c60c4a0c, type: 3}
+  - {fileID: 8300000, guid: bb79b4fd9fc184a85a515c55cd5b8cc5, type: 3}
+  Win: {fileID: 8300000, guid: 3a794d2201415455daf5b287bb183207, type: 3}
+  Lose: {fileID: 8300000, guid: 9cd0df6aa140e449dadccb623c30931d, type: 3}
+  Button: {fileID: 8300000, guid: 650fd9bd58779436296123b6b88e852e, type: 3}
+  EnemyDie: {fileID: 8300000, guid: 6ce72328f32cc43edbdb45e74b139750, type: 3}
+  BossHit: {fileID: 8300000, guid: d0e90dbabb6aa4df293b7a9749de88c3, type: 3}
+  LevelUp: {fileID: 8300000, guid: f88aeff8991904d4bbb98de49c271ad1, type: 3}
