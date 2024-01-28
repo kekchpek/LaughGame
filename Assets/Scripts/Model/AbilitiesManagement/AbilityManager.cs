@@ -46,7 +46,7 @@ namespace LaughGame.Model.AbilitiesManagement
             return _abilities[index];
         }
 
-        public void Use(int abilityIndex)
+        public bool TryUse(int abilityIndex)
         {
             var abilityData = _abilities[abilityIndex];
             var price = abilityData.Price
@@ -54,12 +54,15 @@ namespace LaughGame.Model.AbilitiesManagement
                 .Select(x => x.Value)
                 .GroupBy(x => x)
                 .Select(x => (x.Key, (float)x.Count()));
-            if (_resourcesService.TryToSpend(price))
+            if (true || _resourcesService.TryToSpend(price))
             {
                 abilityData.Ability.Execute();
                 _abilities[abilityIndex] = GetRandom();
                 AbilityUpdated?.Invoke(abilityIndex);
+                return true;
             }
+
+            return false;
         }
 
         private AbilityData GetRandom()

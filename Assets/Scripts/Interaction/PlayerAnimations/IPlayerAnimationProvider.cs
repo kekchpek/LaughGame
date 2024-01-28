@@ -8,5 +8,6 @@ namespace LaughGame.Interaction.PlayerAnimations
         void SetWalk(bool isWalk);
         void PlaySkill(string skill);
         void PlayDamage();
+        void SetFaceValue(float faceValue);
     }
 }

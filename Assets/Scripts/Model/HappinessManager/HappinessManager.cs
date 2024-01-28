@@ -1,11 +1,14 @@
+using System;
 using AsyncReactAwait.Bindable;
+using LaughGame.Interaction.PlayerAnimations;
 using LaughGame.Model.AbilitiesUpgrade;
 
 namespace LaughGame.Model.HapinessManager
 {
-    public class HappinessManager : IHappinessManager
+    public class HappinessManager : IHappinessManager, IDisposable
     {
         private readonly IAbilitiesUpgradeManager _upgradeManager;
+        private readonly IPlayerAnimationProvider _playerAnimationProvider;
         private const float MaxHappinessValue = 100f;
         private const float HappinessBonus = 2f;
 
@@ -14,9 +17,18 @@ namespace LaughGame.Model.HapinessManager
         public float MaxHappiness => MaxHappinessValue;
         public IBindable<float> Happiness => _happiness;
 
-        public HappinessManager(IAbilitiesUpgradeManager upgradeManager)
+        public HappinessManager(
+            IAbilitiesUpgradeManager upgradeManager,
+            IPlayerAnimationProvider playerAnimationProvider)
         {
             _upgradeManager = upgradeManager;
+            _playerAnimationProvider = playerAnimationProvider;
+            _happiness.Bind(OnHappinessChanged);
+        }
+
+        private void OnHappinessChanged(float val)
+        {
+            _playerAnimationProvider.SetFaceValue(val);
         }
 
         public void SetHappinessPercent(float happinessPercent)
@@ -44,6 +56,11 @@ namespace LaughGame.Model.HapinessManager
             {
                 // Lose
             }
+        }
+
+        public void Dispose()
+        {
+            _happiness.Unbind(OnHappinessChanged);
         }
     }
 }

@@ -45,6 +45,20 @@ namespace LaughGame.Interaction.PlayerAnimations
             }
         }
 
+        public void SetFaceValue(float faceValue)
+        {
+            if (SpineAnimation == null)
+                return;
+            var index = faceValue switch
+            {
+                < 15f => 1,
+                < 30f => 2,
+                < 45f => 3,
+                _ => 4
+            };
+            SpineAnimation.state.SetAnimation(1, $"Helf_{index}", false);
+        }
+
         public void SetAnimation(string animation)
         {
             if (SpineAnimation == null)

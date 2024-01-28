@@ -6,6 +6,6 @@ namespace LaughGame.Model.AbilitiesManagement
     {
         event Action<int> AbilityUpdated;
         AbilityData Get(int index);
-        void Use(int abilityIndex);
+        bool TryUse(int abilityIndex);
     }
 }

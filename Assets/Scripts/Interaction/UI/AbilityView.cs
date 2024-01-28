@@ -89,8 +89,11 @@ namespace LaughGame.Interaction.UI
         {
             if (Input.GetKeyDown((_index + 1).ToString()))
             {
-                _playerAnimationProvider.PlaySkill(GetAbilityAnimation());
-                _abilitiesManager.Use(_index);
+                var anim = GetAbilityAnimation();
+                if (_abilitiesManager.TryUse(_index))
+                {
+                    _playerAnimationProvider.PlaySkill(anim);
+                }
             }
         }
 
