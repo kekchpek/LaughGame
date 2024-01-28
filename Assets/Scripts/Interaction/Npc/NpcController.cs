@@ -29,6 +29,12 @@ namespace LaughGame.Interaction.Npc
         [SerializeField]
         private Collider2D _collider;
 
+        [SerializeField]
+        private bool _isBoss;
+
+        [SerializeField]
+        private float _health;
+
         private bool _walking = true;
 
         private Transform _transform;
@@ -41,6 +47,7 @@ namespace LaughGame.Interaction.Npc
         private Vector3 _velocity;
         private static readonly int Like = Animator.StringToHash("Like");
         private static readonly int Die = Animator.StringToHash("Die");
+        private static readonly int Damage = Animator.StringToHash("Damage");
 
         [Inject]
         public void Construct(
@@ -82,7 +89,10 @@ namespace LaughGame.Interaction.Npc
                 if (_damage > 0f)
                 {
                     _playerDamageReceiver.DoDamage(_damage);
-                    StartCoroutine(Disappear(false));
+                    if (!_isBoss)
+                    {
+                        StartCoroutine(Disappear(false));
+                    }
                 }
             }
             else
@@ -135,8 +145,30 @@ namespace LaughGame.Interaction.Npc
 
         public void TakeDamage(float amount)
         {
-            StartCoroutine(BecomeHappy());
+            if (_isBoss)
+            {
+                _walking = false;
+                _animator.SetTrigger(Damage);
+                _health -= amount;
+                if (_health <= 0f)
+                {
+                    Debug.Log("WIN");
+                }
+                else
+                {
+                    StartCoroutine(StartWalking());
+                }
+            }
+            else
+            {
+                StartCoroutine(BecomeHappy());
+            }
         }
 
+        private IEnumerator StartWalking()
+        {
+            yield return new WaitForSeconds(1f);
+            _walking = true;
+        }
     }
 }

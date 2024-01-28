@@ -49,7 +49,7 @@ namespace LaughGame.Assets.Scripts.Model.Abilities
 
             foreach (var collider in colliders)
             {
-                Vector2 directionToEnemy = collider.transform.position - AbilityParent.MovableTransform.position;
+                Vector2 directionToEnemy = collider.transform.position + (Vector3)collider.offset - AbilityParent.MovableTransform.position;
                 float angle = Vector2.Angle(AbilityParent.FacingDirection, directionToEnemy);
 
                 if (angle > _curStat.ConeAngle)

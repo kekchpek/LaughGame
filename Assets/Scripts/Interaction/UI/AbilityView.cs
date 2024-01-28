@@ -87,7 +87,7 @@ namespace LaughGame.Interaction.UI
 
         public void Update()
         {
-            if (Input.GetKeyDown((_index + 1).ToString()))
+            if (Time.timeScale > 0f && Input.GetKeyDown((_index + 1).ToString()))
             {
                 var anim = GetAbilityAnimation();
                 if (_abilitiesManager.TryUse(_index))

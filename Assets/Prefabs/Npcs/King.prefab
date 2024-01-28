@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -9160907286549550025}
   - component: {fileID: 9176041124175514823}
   m_Layer: 7
-  m_Name: Enemy
+  m_Name: King
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31,7 +31,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.48, y: 0.48, z: 0.48}
+  m_LocalScale: {x: 3.6, y: 3.6, z: 4}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3961433182500827396}
@@ -51,10 +51,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speed: 5
   _rigidbody: {fileID: 1956268920560207523}
-  _damage: 5
+  _damage: 1000
   _resId: 
   _animator: {fileID: 4720180577138517259}
   _collider: {fileID: 9176041124175514823}
+  _isBoss: 1
+  _health: 15
 --- !u!50 &1956268920560207523
 Rigidbody2D:
   serializedVersion: 4
@@ -92,7 +94,7 @@ Animator:
   m_GameObject: {fileID: 4699213554976780669}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 7cf182bad1f91456e914d42fa41ef449, type: 2}
+  m_Controller: {fileID: 9100000, guid: 8ea2940bd863e4232b30b5191a39694f, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -149,7 +151,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: -2.46}
-  m_Size: {x: 4.33, y: 5.74}
+  m_Size: {x: 3.08, y: 2.04}
   m_Direction: 0
 --- !u!1 &6122432977228403407
 GameObject:
@@ -224,7 +226,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 5313a19472f674129a3dd66d28f112f3, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b54c187babb6041e68e0cd24df3877f7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

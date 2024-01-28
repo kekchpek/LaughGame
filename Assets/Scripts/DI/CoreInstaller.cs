@@ -1,5 +1,6 @@
 using LaughGame.Assets.Scripts.Model.Abilities;
 using LaughGame.GameResources;
+using LaughGame.Interaction.Boss;
 using LaughGame.Interaction.Npc;
 using LaughGame.Interaction.ParticleEffects;
 using LaughGame.Interaction.PlayerAnimations;
@@ -18,6 +19,8 @@ namespace LaughGame.DI
 
         [SerializeField]
         private ParticleEffectsProvider _particleEffectsProvider;
+        [SerializeField]
+        private BossSpawner _bossSpawner;
         
         public override void InstallBindings()
         {
@@ -31,6 +34,7 @@ namespace LaughGame.DI
             Container.Bind<IAbilitiesUpgradeManager>().To<AbilitiesUpgradeManager>().AsSingle();
             Container.Bind<IPlayerAnimationProvider>().To<PlayerAnimationProvider>().AsSingle();
             Container.Bind<IParticleEffectsProvider>().FromInstance(_particleEffectsProvider);
+            Container.Bind<IBossSpawner>().FromInstance(_bossSpawner);
         }
     }
 }

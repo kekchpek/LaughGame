@@ -201,6 +201,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _particleEffectsProvider: {fileID: 379461346}
+  _bossSpawner: {fileID: 125263852}
 --- !u!4 &46211450 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5599041238928672065, guid: e8896339978b849b0a77a3b5d2307cbe, type: 3}
@@ -211,6 +212,51 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3369801241830725303, guid: e8896339978b849b0a77a3b5d2307cbe, type: 3}
   m_PrefabInstance: {fileID: 1545997790}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &125263850
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 125263851}
+  - component: {fileID: 125263852}
+  m_Layer: 0
+  m_Name: BossSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &125263851
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 125263850}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 14.53, y: 4.35, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &125263852
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 125263850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e878d504bd774ac48370ea714a302c13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _bossPrefab: {fileID: 4699213554976780669, guid: 51b1b606c988c4417a3c8b6e622fcc61, type: 3}
 --- !u!4 &267079461 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6956669372704321010, guid: e8896339978b849b0a77a3b5d2307cbe, type: 3}
@@ -10493,7 +10539,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4157898058679220992, guid: 779a84c7287c443188503a44468af330, type: 3}
       propertyPath: _spawnTime
-      value: 0.9
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 4157898058679220992, guid: 779a84c7287c443188503a44468af330, type: 3}
       propertyPath: _enemyChance
@@ -12058,3 +12104,4 @@ SceneRoots:
   - {fileID: 1096192115}
   - {fileID: 1545997790}
   - {fileID: 379461347}
+  - {fileID: 125263851}

@@ -1,5 +1,6 @@
 using System;
 using AsyncReactAwait.Bindable;
+using LaughGame.Interaction.Boss;
 using LaughGame.Interaction.PlayerAnimations;
 using LaughGame.Model.AbilitiesUpgrade;
 
@@ -9,20 +10,25 @@ namespace LaughGame.Model.HapinessManager
     {
         private readonly IAbilitiesUpgradeManager _upgradeManager;
         private readonly IPlayerAnimationProvider _playerAnimationProvider;
+        private readonly IBossSpawner _bossSpawner;
         private const float MaxHappinessValue = 100f;
         private const float HappinessBonus = 2f;
 
         private readonly IMutable<float> _happiness = new Mutable<float>(50f);
+
+        private int _level;
 
         public float MaxHappiness => MaxHappinessValue;
         public IBindable<float> Happiness => _happiness;
 
         public HappinessManager(
             IAbilitiesUpgradeManager upgradeManager,
-            IPlayerAnimationProvider playerAnimationProvider)
+            IPlayerAnimationProvider playerAnimationProvider,
+            IBossSpawner bossSpawner)
         {
             _upgradeManager = upgradeManager;
             _playerAnimationProvider = playerAnimationProvider;
+            _bossSpawner = bossSpawner;
             _happiness.Bind(OnHappinessChanged);
         }
 
@@ -46,6 +52,12 @@ namespace LaughGame.Model.HapinessManager
                     _happiness.Value -= MaxHappinessValue * 0.5f;
                 else
                     _happiness.Value = MaxHappinessValue;
+                _level++;
+            }
+
+            if (_level > 9)
+            {
+                _bossSpawner.SpawnBoss();
             }
         }
 

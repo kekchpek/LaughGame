@@ -47,7 +47,7 @@ namespace LaughGame.Interaction.PlayerAnimations
 
         public void SetFaceValue(float faceValue)
         {
-            if (SpineAnimation == null)
+            if (SpineAnimation == null || SpineAnimation.state == null)
                 return;
             var index = faceValue switch
             {
@@ -61,14 +61,14 @@ namespace LaughGame.Interaction.PlayerAnimations
 
         public void SetAnimation(string animation)
         {
-            if (SpineAnimation == null)
+            if (SpineAnimation == null || SpineAnimation.state == null)
                 return;
             SpineAnimation.state.SetAnimation(0, animation, true);
         }
 
         public void PlayAnimation(string animation)
         {
-            if (SpineAnimation == null)
+            if (SpineAnimation == null || SpineAnimation.state == null)
                 return;
             _currentAnimation = animation;
             SpineAnimation.state.End -= _completeHandler;
