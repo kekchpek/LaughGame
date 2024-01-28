@@ -170,7 +170,7 @@ namespace LaughGame.Interaction.Npc
                 }
                 else
                 {
-                    _audioManager.Play(_audioManager.AudioConfig.BossHit);
+                    _audioManager.Submit(_audioManager.AudioConfig.BossHit);
                     StartCoroutine(StartWalking());
                 }
             }

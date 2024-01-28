@@ -46,7 +46,8 @@ namespace Finespace.LofiLegends.MVVM.Models.Audio
 
         public void Submit(AudioClip audioClip)
         {
-            _submittedAudioClips.Add(audioClip);
+            if (!_submittedAudioClips.Contains(audioClip))
+                _submittedAudioClips.Add(audioClip);
         }
 
         private void Update()

@@ -51,6 +51,7 @@ namespace LaughGame.Interaction.UI
             _playerAnimationProvider = playerAnimationProvider;
             _abilitiesManager.AbilityUpdated += OnAbilityChanged;
             _resourcesModel.ResourceChanged += OnResourceChanged;
+            UpdateAbility();
         }
 
         private void OnResourceChanged(ResourceId arg1, float arg2)
