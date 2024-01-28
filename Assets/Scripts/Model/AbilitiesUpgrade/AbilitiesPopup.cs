@@ -69,7 +69,7 @@ namespace LaughGame.Model.AbilitiesUpgrade
                 }
                 _options[i].GameObject.SetActive(true);
                 _options[i].Image.sprite = ability.GetSprite();
-                _options[i].Stars.SetStars(ability.CurrentLevel + 1);
+                _options[i].Stars.SetStars(ability.CurrentLevel.Value + 1);
                 _options[i].Text.text = ability.UpgradeDescription;
                 _options[i].Button.onClick.AddListener(OnClick);
                 i++;

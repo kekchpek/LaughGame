@@ -94,7 +94,7 @@ namespace LaughGame.Interaction.Npc
                 }
                 if (_damage > 0f)
                 {
-                    _playerDamageReceiver.DoDamage(0);
+                    _playerDamageReceiver.DoDamage(_damage);
                     if (!_isBoss)
                     {
                         StartCoroutine(Disappear(false));
@@ -150,7 +150,7 @@ namespace LaughGame.Interaction.Npc
             _walking = false;
             _collider.enabled = false;
             _animator.SetTrigger(Like);
-            _audioManager.Play(_audioManager.AudioConfig.EnemyDie);
+            _audioManager.Submit(_audioManager.AudioConfig.EnemyDie);
             _happinessManager.AddHappiness();
             yield return new WaitForSeconds(2.5f);
             Destroy(gameObject);

@@ -1,4 +1,6 @@
-﻿using AsyncReactAwait.Bindable;
+﻿using System;
+using System.Collections.Generic;
+using AsyncReactAwait.Bindable;
 using LaughGame.Model.Audio;
 using UnityEngine;
 
@@ -10,6 +12,8 @@ namespace Finespace.LofiLegends.MVVM.Models.Audio
         [SerializeField] private AudioSource _sfxAudioSource;
         [SerializeField] private AudioSource _musicAudioSource;
         [SerializeField] private AudioConfig _audioConfig;
+
+        private readonly HashSet<AudioClip> _submittedAudioClips = new();
 
         public AudioConfig AudioConfig => _audioConfig;
         public IMutable<float> MusicVolume { get; } = new Mutable<float>(1f);
@@ -39,7 +43,21 @@ namespace Finespace.LofiLegends.MVVM.Models.Audio
         {
             _sfxAudioSource.PlayOneShot(audioClip);
         }
-        
+
+        public void Submit(AudioClip audioClip)
+        {
+            _submittedAudioClips.Add(audioClip);
+        }
+
+        private void Update()
+        {
+            foreach (var audioClip in _submittedAudioClips)
+            {
+                Play(audioClip);
+            }
+            _submittedAudioClips.Clear();
+        }
+
         public void SetMusic(AudioClip audioClip, bool loop = false)
         {
             _musicAudioSource.clip = audioClip;

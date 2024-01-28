@@ -1,6 +1,7 @@
 ﻿using LaughGame.Assets.Scripts.Model.Abilities.Interfaces;
 using LaughGame.Model.Abilities;
 using System.Collections.Generic;
+using AsyncReactAwait.Bindable;
 using Finespace.LofiLegends.MVVM.Models.Audio;
 using LaughGame.Model.Abilities.AbilitiesRegister;
 using UnityEngine;
@@ -17,7 +18,7 @@ namespace LaughGame.Assets.Scripts.Model.Abilities
         protected T _curStat;
 
 
-        private int _statIndex = 0;
+        private IMutable<int> _statIndex = new Mutable<int>();
         private bool _canUpgrade;
 
         public IMovable AbilityParent => _entitiesProvider?.GetMovablePlayer();
@@ -47,14 +48,14 @@ namespace LaughGame.Assets.Scripts.Model.Abilities
         {
             if (CanUpgrade == false)
                 return;
-            _statIndex++;
+            _statIndex.Value++;
 
-            _curStat = _stats[_statIndex];
+            _curStat = _stats[_statIndex.Value];
         }
 
         public abstract string AnimationName { get; }
         public abstract string UpgradeDescription { get; }
-        public int CurrentLevel => _statIndex;
-        public bool CanUpgrade => _statIndex < _stats.Count - 1;
+        public IBindable<int> CurrentLevel => _statIndex;
+        public bool CanUpgrade => _statIndex.Value < _stats.Count - 1;
     }
 }

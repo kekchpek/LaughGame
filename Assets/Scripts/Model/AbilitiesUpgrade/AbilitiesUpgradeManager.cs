@@ -18,6 +18,14 @@ namespace LaughGame.Model.AbilitiesUpgrade
             _abilitiesRegister = abilitiesRegister;
         }
 
+        public bool CanUpgrade()
+        {
+            var upgrades = GetAbilitiesToUpgrade();
+            if (upgrades.Length == 0)
+                return false;
+            return true;
+        }
+
         public void SetPopup(IAbilitiesPopup abilitiesPopup)
         {
             _abilitiesPopup = abilitiesPopup;

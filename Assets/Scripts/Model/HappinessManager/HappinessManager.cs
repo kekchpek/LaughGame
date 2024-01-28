@@ -52,7 +52,11 @@ namespace LaughGame.Model.HapinessManager
             _happiness.Value += HappinessBonus;
             while (_happiness.Value > MaxHappinessValue)
             {
-                _audioManager.Play(_audioManager.AudioConfig.LevelUp);
+                if (_upgradeManager.CanUpgrade())
+                {
+                    _audioManager.Play(_audioManager.AudioConfig.LevelUp);
+                }
+
                 var isUpgraded = await _upgradeManager.StartUpgrade();
                 if (isUpgraded)
                     _happiness.Value -= MaxHappinessValue * 0.5f;

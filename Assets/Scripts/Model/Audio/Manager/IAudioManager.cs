@@ -10,6 +10,7 @@ namespace Finespace.LofiLegends.MVVM.Models.Audio
         IMutable<float> MusicVolume { get; }
         IMutable<float> SfxVolume { get; }
         void Play(AudioClip audioClip);
+        void Submit(AudioClip audioClip);
         void SetMusic(AudioClip audioClip, bool loop = true);
         void PauseMusic();
         void StartMusic();

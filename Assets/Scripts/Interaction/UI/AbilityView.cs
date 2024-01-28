@@ -1,4 +1,5 @@
 using System.Linq;
+using AsyncReactAwait.Bindable;
 using LaughGame.GameResources;
 using LaughGame.Interaction.PlayerAnimations;
 using LaughGame.Model.AbilitiesManagement;
@@ -37,6 +38,7 @@ namespace LaughGame.Interaction.UI
 
         private IAbilitiesManager _abilitiesManager;
         private IPlayerAnimationProvider _playerAnimationProvider;
+        private IBindable<int> _level;
 
         [Inject]
         public void Construct(
@@ -81,7 +83,12 @@ namespace LaughGame.Interaction.UI
             var data = _abilitiesManager.Get(_index);
             _image.sprite = data.Ability.GetSprite();
             _priceView.SetPrice(data.Price);
-            _stars.SetStars(data.Ability.CurrentLevel);
+            if (_level != null)
+            {
+                _level.Unbind(_stars.SetStars);
+            }
+            _level = data.Ability.CurrentLevel;
+            _level.Bind(_stars.SetStars);
             UpdateIsAvailable();
         }
 
@@ -106,6 +113,10 @@ namespace LaughGame.Interaction.UI
         {
             _abilitiesManager.AbilityUpdated -= OnAbilityChanged;
             _resourcesModel.ResourceChanged -= OnResourceChanged;
+            if (_level != null)
+            {
+                _level.Unbind(_stars.SetStars);
+            }
         }
     }
 }
