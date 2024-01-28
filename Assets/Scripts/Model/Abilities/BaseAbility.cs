@@ -51,6 +51,6 @@ namespace LaughGame.Assets.Scripts.Model.Abilities
 
         public abstract string UpgradeDescription { get; }
         public int CurrentLevel => _statIndex;
-        public bool CanUpgrade => _statIndex < _stats.Count;
+        public bool CanUpgrade => _statIndex < _stats.Count - 1;
     }
 }

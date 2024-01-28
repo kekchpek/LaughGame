@@ -512,6 +512,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _index: 0
   _image: {fileID: 8160179802946104328}
+  _notAvailableColor: {r: 0.15686275, g: 0.1882353, b: 0.2509804, a: 1}
+  _availableColor: {r: 1, g: 0.8627451, b: 0, a: 1}
+  _bg: {fileID: 8484343425589434646}
   _priceView: {fileID: 3573105131482354433}
   _stars: {fileID: 1041629659346989232}
 --- !u!1 &8856482623062836812
