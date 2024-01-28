@@ -1,6 +1,7 @@
 using LaughGame.Assets.Scripts.Model.Abilities;
 using LaughGame.GameResources;
 using LaughGame.Interaction.Npc;
+using LaughGame.Interaction.ParticleEffects;
 using LaughGame.Interaction.PlayerAnimations;
 using LaughGame.Model.Abilities;
 using LaughGame.Model.Abilities.AbilitiesRegister;
@@ -14,6 +15,10 @@ namespace LaughGame.DI
 {
     public class CoreInstaller : MonoInstaller
     {
+
+        [SerializeField]
+        private ParticleEffectsProvider _particleEffectsProvider;
+        
         public override void InstallBindings()
         {
             Container.Install<GameResourcesInstaller>();
@@ -25,6 +30,7 @@ namespace LaughGame.DI
             Container.Bind<IAbilitiesManager>().To<AbilityManager>().AsSingle();
             Container.Bind<IAbilitiesUpgradeManager>().To<AbilitiesUpgradeManager>().AsSingle();
             Container.Bind<IPlayerAnimationProvider>().To<PlayerAnimationProvider>().AsSingle();
+            Container.Bind<IParticleEffectsProvider>().FromInstance(_particleEffectsProvider);
         }
     }
 }

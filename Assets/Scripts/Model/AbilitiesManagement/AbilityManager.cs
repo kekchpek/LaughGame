@@ -54,7 +54,7 @@ namespace LaughGame.Model.AbilitiesManagement
                 .Select(x => x.Value)
                 .GroupBy(x => x)
                 .Select(x => (x.Key, (float)x.Count()));
-            if (true || _resourcesService.TryToSpend(price))
+            if (_resourcesService.TryToSpend(price))
             {
                 abilityData.Ability.Execute();
                 _abilities[abilityIndex] = GetRandom();

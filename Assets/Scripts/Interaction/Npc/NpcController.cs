@@ -1,5 +1,6 @@
 using System.Collections;
 using LaughGame.GameResources;
+using LaughGame.Interaction.ParticleEffects;
 using LaughGame.Model.HapinessManager;
 using UnityEngine;
 using Zenject;
@@ -30,9 +31,12 @@ namespace LaughGame.Interaction.Npc
 
         private bool _walking = true;
 
+        private Transform _transform;
+
         private IResourcesService _resourcesService;
         private IPlayerDamageReceiver _playerDamageReceiver;
         private IHappinessManager _happinessManager;
+        private IParticleEffectsProvider _particleEffectsProvider;
 
         private Vector3 _velocity;
         private static readonly int Like = Animator.StringToHash("Like");
@@ -42,11 +46,14 @@ namespace LaughGame.Interaction.Npc
         public void Construct(
             IResourcesService resourcesService,
             IPlayerDamageReceiver playerDamageReceiver,
-            IHappinessManager happinessManager)
+            IHappinessManager happinessManager,
+            IParticleEffectsProvider particleEffectsProvider)
         {
+            _transform = transform;
             _resourcesService = resourcesService;
             _playerDamageReceiver = playerDamageReceiver;
             _happinessManager = happinessManager;
+            _particleEffectsProvider = particleEffectsProvider;
         }
 
         private void FixedUpdate()
@@ -102,6 +109,14 @@ namespace LaughGame.Interaction.Npc
             _animator.SetTrigger(Die);
             _collider.enabled = false;
             _walking = false;
+            if (isPositiveAnimation)
+            {
+                _particleEffectsProvider.PlayStars(_transform.position);
+            }
+            else
+            {
+                _particleEffectsProvider.PlayDrops(_transform.position);
+            }
             yield return new WaitForSeconds(0.3f);
             Destroy(gameObject);
         }
